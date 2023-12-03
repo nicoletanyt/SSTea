@@ -1,17 +1,3 @@
-html {
-  height: 100%;
-}
-body {
-  font-family: "Hedvig Letters Sans", sans-serif;
-  padding-left: 3%;
-  padding-right: 3%;
-  padding-top: 2%;
-  position: relative;
-  height: 100%;
-  width: 94%;
-  margin: 0;
-  overflow: hidden;
-}
 #gallery-wrapper {
   display: grid;
   margin-top: 5%;
@@ -36,6 +22,7 @@ body {
 }
 .back-btn {
   text-decoration: none;
+  color: black;
 }
 #main {
   display: flex;
