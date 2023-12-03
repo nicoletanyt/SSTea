@@ -51,12 +51,12 @@ function createUser(auth, email, password) {
             name: "Plant 1",
             locked: false,
             img: "",
-            level: 3,
             stats: {
               HP: 20,
               ATK: 20,
               Range: 40,
               "ATK Speed": 20,
+              level: 3,
             },
           },
         ],
