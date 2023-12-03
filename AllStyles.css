@@ -1,0 +1,14 @@
+/* Declare fonts & colour scheme  */
+
+html {
+  height: 100%;
+}
+body {
+  font-family: "Hedvig Letters Sans", sans-serif;
+  padding-left: 3%;
+  padding-right: 3%;
+  position: relative;
+  height: 100%;
+  width: 94%;
+  overflow: hidden;
+}
