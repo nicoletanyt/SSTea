@@ -1,0 +1,123 @@
+#currency-wrapper {
+  display: flex;
+  justify-content: flex-start;
+  width: 50%;
+}
+.currency-display {
+  display: flex;
+  align-items: center;
+  width: 30%;
+  justify-content: flex-start;
+}
+i {
+  padding-right: 5%;
+}
+#level-wrapper {
+  display: flex;
+  height: 70%;
+  width: inherit;
+  align-items: center;
+  padding: 10%;
+}
+.level-label {
+  padding: 5%;
+  margin-right: 5%;
+  border: 2px solid black;
+  border-radius: 5%;
+}
+.level-label:nth-child(odd) {
+  align-self: flex-start;
+}
+.level-label:nth-child(even) {
+  align-self: flex-end;
+}
+
+/* SELECT CHARACTERS */
+#char-wrapper {
+  display: grid;
+  grid-template-columns: 40% 50%;
+  justify-content: space-between;
+  height: inherit;
+}
+#available-char {
+  margin-top: 5%;
+  display: flex;
+  flex-wrap: wrap;
+  row-gap: 8%;
+}
+.char-square {
+  border: 2px solid black;
+  width: calc(7vw - 2px);
+  height: calc(7vw - 2px);
+  margin-right: 4%;
+  margin-bottom: 4%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 3em;
+}
+.char-square img,
+.square img {
+  resize: both;
+  width: auto;
+  height: inherit;
+}
+#selected-char {
+  display: flex;
+  margin-top: 5%;
+}
+#selected-char .char-square {
+  margin-right: 2%;
+}
+.right {
+  position: relative;
+  height: inherit;
+}
+#enter-btn {
+  position: absolute;
+  bottom: 5%;
+  right: 5%;
+  padding: 3%;
+  background-color: lightgreen;
+  border-radius: 5%;
+}
+#select-char-wrapper {
+  display: flex;
+  top: 5%;
+  bottom: 0;
+}
+#select-char-wrapper img {
+  width: 50%;
+  height: auto;
+  background-color: aliceblue;
+  margin-right: 5%;
+}
+
+/* FOR GAME */
+#wrapper {
+  display: flex;
+}
+#game {
+  padding-top: 2%;
+  height: 85%;
+  display: grid;
+  grid-template-columns: repeat(11, auto);
+  margin-right: 5%;
+}
+.square {
+  border: 1px solid black;
+  width: calc(5vw - 1px);
+  height: calc(5vw - 1px);
+}
+#start-btn {
+  padding: 5%;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+#start-btn:hover {
+  cursor: pointer;
+}
+.remove-click {
+  pointer-events: none;
+}
