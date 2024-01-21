@@ -19,55 +19,82 @@
 <body>
     <a class="back-btn" href="../Homescreen/index.html">
         <i class="fa-solid fa-arrow-left"></i>
-        Back
+        <h1 class="name">Name of Plant</h1>
     </a>
-    <h1 id="name">Name of Plant</h1>
     <div id="main">
-        <div id="plantImg">Image Placeholder</div>
+        <h3 class="name">Name of Plant</h3>
+        <img id="plantImg" src="/Assets/Gallery/Test.png" />
         <div id="stats-wrapper">
             <h3 id="level">Level 5</h3>
             <div id="table-wrapper">
-                <table id="stats-table">
-                    <tr>
-                        <td>HP: </td>
-                        <td class="stat-row">20</td>
-                    </tr>
-                    <tr>
-                        <td>Attack: </td>
-                        <td class="stat-row">20</td>
-                    </tr>
-                    <tr>
-                        <td>Range: </td>
-                        <td class="stat-row">20</td>
-                    </tr>
-                    <tr>
-                        <td>Attack Speed: </td>
-                        <td class="stat-row">20</td>
-                    </tr>
-                </table>
-                <div id="upgrade-table">
-                    <div class="upgrade-btn">
-                        <i class="fa-solid fa-arrow-up"></i>
+                <div class="stat-row">
+                    <div class="stat-val">
+                        <p>HP: </p>
+                        <p>20</p>
+                    </div>
+                    <div class="upgrade-btn" stat="HP">
+                        Level Up
+                    </div>
+                </div>
+
+                <div class="stat-row">
+                    <div class="stat-val">
+                        <p>ATK: </p>
+                        <p>20</p>
+                    </div>
+                    <div class="upgrade-btn" stat="ATK">
+                        Level Up
+                    </div>
+                </div>
+
+                <div class="stat-row">
+                    <div class="stat-val">
+                        <p>Range: </p>
+                        <p>20</p>
                     </div>
                     <div class="upgrade-btn">
-                        <i class="fa-solid fa-arrow-up"></i>
-                    </div>
-                    <div class="upgrade-btn">
-                        <i class="fa-solid fa-arrow-up"></i>
-                    </div>
-                    <div class="upgrade-btn">
-                        <i class="fa-solid fa-arrow-up"></i>
+                        Level Up
                     </div>
                 </div>
 
             </div>
             <div class="level-btn">
-                <h3>Level up</h3>
+                <h3>Level up plant</h3>
             </div>
         </div>
     </div>
+    <div id="popup" class="hidden">
+        <div id="toolbar">
+            <h3>Level Up</h3>
+            <div class="close-btn">
+                <i class="fa-solid fa-close"></i>
+            </div>
+        </div>
+        <h3>Materials Needed:</h3>
+        <div id="materials-grid">
+            <div class="material">
+                <img src="../Assets/Gallery/placeholder.png" />
+                <p class="multiplier">x3</p>
+            </div>
+            <div class="material">
+                <img src="../Assets/Gallery/placeholder.png" />
+                <p class="multiplier">x6</p>
+            </div>
+            <div class="material">
+                <img src="../Assets/Gallery/placeholder.png" />
+                <p class="multiplier">x9</p>
+            </div>
+        </div>
+        <div id="level-change">
+            <p>HP: </p>
+            <p class="before-val">200</p>
+            <i class="fa-solid fa-arrow-right"></i>
+            <p class="after-val">400</p>
+        </div>
+        <div id="level-up-btn">Level Up</div>
+
+    </div>
     <script type="module" src="index.js"></script>
-    <script type="module" src="../Firebase.js"></script>
 </body>
 
 </html>

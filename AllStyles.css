@@ -4,13 +4,16 @@ html {
   height: 100%;
 }
 body {
+  background: url("../Assets/Homepage/Background.png");
+  background-repeat: no-repeat;
+  background-size: contain;
   font-family: "Hedvig Letters Sans", sans-serif;
   padding: 3%;
   padding-top: 2%;
   padding-bottom: 1%;
   margin: 0;
   position: relative;
-  height: 94%;
+  height: 100%;
   width: 94%;
   overflow: hidden;
 }
