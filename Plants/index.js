@@ -4,12 +4,11 @@ import { userData } from "../Data.js";
 const createPlantDisplay = (locked) => {
   let displayWrapper = document.createElement("div");
   displayWrapper.classList.add("plant-display");
-  let icon = document.createElement("i");
-  icon.classList.add("fa-solid");
+  let icon = document.createElement("img");
   if (locked) {
-    icon.classList.add("fa-lock");
+    icon.src = "../Assets/Gallery/Lock.png";
   } else {
-    icon.classList.add("fa-tree");
+    // icon.classList.add("fa-tree");
   }
   displayWrapper.appendChild(icon);
   return displayWrapper;
