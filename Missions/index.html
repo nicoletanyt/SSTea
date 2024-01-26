@@ -15,25 +15,46 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+
+    <!-- Load TensorFlow.js. -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow/tfjs@latest/dist/tf.min.js"></script>
+    <!-- Load the MobileNet model. -->
+    <script src="https://cdn.jsdelivr.net/npm/@tensorflow-models/mobilenet@1.0.0"> </script>
 </head>
 
 <body>
     <a class="back-btn" href="../Homescreen/index.html">
         <i class="fa-solid fa-arrow-left"></i>
         <!-- Back -->
-        <h1>Plants Gallery</h1>
+        <h1>Missions</h1>
     </a>
-    <div id="main">
+    <div id="main" class="">
         <div class="heading-row">
             <div class="mission-row">Daily</div>
             <div class="mission-row untoggled">Achievements</div>
         </div>
-        <div class="mission-row">Water Plant</div>
-        <div class="mission-row">Get Plant</div>
-        <div class="mission-row">Take picture of plant</div>
+        <div class="mission-row mission" mission="take-pic">Take image of plant</div>
+        <div class="mission-row mission">Water Plant</div>
+        <div class="mission-row mission">Get Plant</div>
+    </div>
+    <div id="popup" class="hidden">
+        <div id="toolbar">
+            <h3>Take image of plant</h3>
+            <div class="close-btn">
+                <i class="fa-solid fa-close"></i>
+            </div>
+        </div>
+
+        <video id="video">Video stream not available.</video>
+
+        <h3>Output:</h3>
+        <canvas id="output"> </canvas>
+
+        <div id="start-button">Snap</div>
+
     </div>
 
-    <script src="index.js"></script>
+    <script src="index.js" type="module"></script>
 </body>
 
 </html>

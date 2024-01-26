@@ -2,6 +2,10 @@
   display: flex;
   justify-content: flex-end;
 }
+#user-pic {
+  position: absolute;
+  width: 25%;
+}
 .currency-display {
   display: flex;
   align-items: center;
