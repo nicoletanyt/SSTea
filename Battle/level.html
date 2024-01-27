@@ -7,20 +7,43 @@
     <title>Battle</title>
 
     <script src="https://kit.fontawesome.com/056eae0c7b.js" crossorigin="anonymous"></script>
+
+    <!-- import fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../AllStyles.css">
 </head>
 
 <body>
-    <h1 id="level-label">Level </h1>
-    <div id="wrapper">
-        <div id="game">
+    <a class="back-btn" href="../Homescreen/index.html">
+        <i class="fa-solid fa-arrow-left"></i>
+        <!-- Back -->
+        <h1>Battles</h1>
+    </a>
+    <div id="game-wrapper">
+        <div id="character-wrapper">
+            <div class="char-square">
+                <img src="/Assets/Gallery/sunflower.png" draggable="true" id="char-1" />
+            </div>
+            <div class="char-square">
+                <img src="/Assets/Gallery/tulip.png" draggable="true" id="char-2" />
+            </div>
+            <div class="char-square">
+                <img src="/Assets/Gallery/bokchoy.png" draggable="true" id="char-3" />
+            </div>
+            <div class="char-square"></div>
+            <div class="char-square"></div>
+            <div class="char-square"></div>
+            <div class="char-square"></div>
         </div>
-        <div>
+        <div class="right-wrapper">
+            <div id="game"></div>
+            <h3 id="start-btn">Confirm</h3>
+        </div>
+        <!-- <div>
             <h2>My Characters</h2>
             <div id="selected-char">
                 <div class="char-square">
@@ -37,7 +60,7 @@
                 </div>
             </div>
             <div id="start-btn">Start</div>
-        </div>
+        </div> -->
     </div>
     <script src="level.js"></script>
 </body>

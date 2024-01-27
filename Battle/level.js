@@ -1,31 +1,55 @@
-const levelLabel = document.querySelector("#level-label");
-levelLabel.textContent = "Level " + localStorage.getItem("level");
-
-const main = document.querySelector("#game");
+const main = document.getElementById("game");
 const rows = 9;
-const cols = 11;
+const cols = 4;
 let charPos = {}; // format is ID : GRID POS
+const locked = [7, 12, 28, 32];
+const enemiesPath = [1, 5, 9, 13, 17, 18, 22, 26, 30, 34];
 
-for (let i = 0; i < cols; i++) {
-  for (let j = 0; j < rows; j++) {
-    let grid = document.createElement("div");
-    grid.classList.add("square");
-    grid.addEventListener("drop", (ev) => {
-      ev.preventDefault();
-      var data = ev.dataTransfer.getData("text");
-      ev.target.appendChild(document.getElementById(data));
-      charPos[data] = i * rows + j;
-    });
-    grid.addEventListener("dragover", (ev) => {
-      dragover(ev);
-    });
-    main.appendChild(grid);
+function createGrid() {
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      let grid = document.createElement("div");
+      grid.classList.add("square");
+      grid.addEventListener("drop", (ev) => {
+        ev.preventDefault();
+        if (
+          !ev.target.classList.contains("locked") &&
+          !ev.target.classList.contains("enemy") &&
+          !ev.target.classList.contains("house")
+        ) {
+          var data = ev.dataTransfer.getData("text");
+          ev.target.appendChild(document.getElementById(data));
+          charPos[data] = i * rows + j;
+        } else {
+          alert("You cannot place it here.");
+        }
+      });
+      grid.addEventListener("dragover", (ev) => {
+        dragover(ev);
+      });
+      main.appendChild(grid);
+    }
   }
 }
 
+createGrid();
 const grids = document.querySelectorAll(".square");
-const teamIndex = JSON.parse(localStorage.getItem("teamIndex"));
 const charGrids = document.querySelectorAll(".char-square");
+
+// Make house
+const house = document.createElement("img");
+house.src = "../Assets/Battle/house.png";
+house.classList.add("house");
+grids[34].appendChild(house);
+
+// set locked grids
+for (let i = 0; i < locked.length; ++i) {
+  grids[locked[i]].classList.add("locked");
+}
+// set enemies path
+for (let i = 0; i < enemiesPath.length; ++i) {
+  grids[enemiesPath[i]].classList.add("enemy");
+}
 
 function dragStart(ev) {
   ev.dataTransfer.setData("text", ev.target.id);
@@ -33,8 +57,17 @@ function dragStart(ev) {
 
 function drop(ev) {
   ev.preventDefault();
+
   var data = ev.dataTransfer.getData("text");
-  ev.target.appendChild(document.getElementById(data));
+  if (
+    !ev.target.classList.contains("locked") &&
+    !ev.target.classList.contains("enemy") &&
+    !ev.target.classList.contains("house")
+  ) {
+    ev.target.appendChild(document.getElementById(data));
+  } else {
+    alert("You cannot place it here.");
+  }
 }
 
 function dragover(ev) {
@@ -42,33 +75,22 @@ function dragover(ev) {
 }
 
 for (let i = 0; i < charGrids.length; i++) {
-  let image = charGrids[i].childNodes[1];
+  if (charGrids[i].hasChildNodes()) {
+    let image = charGrids[i].children[0];
 
-  image.addEventListener("dragstart", (ev) => {
-    dragStart(ev);
-    charPos[image.id] = -1;
-  });
+    image.addEventListener("dragstart", (ev) => {
+      dragStart(ev);
+      charPos[image.id] = -1;
+    });
 
-  charGrids[i].addEventListener("drop", (ev) => {
-    drop(ev);
-  });
+    charGrids[i].addEventListener("drop", (ev) => {
+      drop(ev);
+    });
 
-  charGrids[i].addEventListener("dragover", (ev) => {
-    dragover(ev);
-  });
+    charGrids[i].addEventListener("dragover", (ev) => {
+      dragover(ev);
+    });
+  }
 }
 
 const startBtn = document.querySelector("#start-btn");
-startBtn.addEventListener("click", () => {
-  if (charPos.length != teamIndex.length) {
-    alert("You have characters that are not deployed.");
-  } else {
-    // Remove drag-drop of chars
-    for (let i = 0; i < charGrids.length; i++) {
-      charGrids[i].classList.add("remove-click");
-    }
-    for (let i = 0; i < grids.length; i++) {
-      grids[i].classList.add("remove-click");
-    }
-  }
-});
