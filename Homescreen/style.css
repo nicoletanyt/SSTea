@@ -5,6 +5,14 @@
 #user-pic {
   position: absolute;
   width: 25%;
+  left: 5%;
+}
+#main {
+  display: flex;
+  justify-content: center;
+}
+#pic {
+  align-self: flex-end;
 }
 .currency-display {
   display: flex;
@@ -34,7 +42,7 @@
 }
 #nav-wrapper {
   display: grid;
-  grid-template-columns: repeat(4, 21%);
+  grid-template-columns: repeat(4, 18%);
   width: 94%;
   justify-content: space-around;
   position: absolute;

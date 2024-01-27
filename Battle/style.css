@@ -2,7 +2,8 @@
   background: url(../Assets/Gallery/Background.png);
   background-size: contain;
   background-repeat: no-repeat;
-  height: 75%;
+  background-size: 85vw 69vh;
+  height: 80%;
   margin: 5%;
   display: flex;
   flex-direction: column;
@@ -29,13 +30,15 @@
 }
 #levelPlant {
   width: 85%;
+  height: 82%;
+  resize: both;
 }
 
 #right-level-wrapper {
   display: grid;
   position: absolute;
   align-items: center;
-  top: 25%;
+  top: 28%;
   width: 30%;
   height: 62%;
   left: 60%;
@@ -45,7 +48,7 @@
   display: grid;
   position: absolute;
   align-items: center;
-  top: 30%;
+  top: 32%;
   width: 30%;
   height: 62%;
   grid-template-rows: repeat(5, 20%);
