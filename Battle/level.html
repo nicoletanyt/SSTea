@@ -23,7 +23,7 @@
         <!-- Back -->
         <h1>Battles</h1>
     </a>
-    <div id="game-wrapper">
+    <div class="game-wrapper">
         <div id="character-wrapper">
             <div class="char-square">
                 <img src="/Assets/Gallery/sunflower.png" draggable="true" id="char-1" />
@@ -40,27 +40,21 @@
             <div class="char-square"></div>
         </div>
         <div class="right-wrapper">
-            <div id="game"></div>
+            <div class="game"></div>
             <h3 id="start-btn">Confirm</h3>
         </div>
-        <!-- <div>
-            <h2>My Characters</h2>
-            <div id="selected-char">
-                <div class="char-square">
-                    <img src="/Assets/CHAR-TEMP.png" draggable="true" id="char-1" />
-                </div>
-                <div class="char-square">
-                    <img src="/Assets/CHAR-TEMP.png" draggable="true" id="char-2" />
-                </div>
-                <div class="char-square">
-                    <img src="/Assets/CHAR-TEMP.png" draggable="true" id="char-3" />
-                </div>
-                <div class="char-square">
-                    <img src="/Assets/CHAR-TEMP.png" draggable="true" id="char-4" />
-                </div>
-            </div>
-            <div id="start-btn">Start</div>
-        </div> -->
+    </div>
+    <div class="game-wrapper-actual hidden">
+        <div id="enemy-health">
+            <div class="val"></div>
+        </div>
+        <div id="middle-wrapper">
+            <div class="game"></div>
+            <h3 id="end-btn">End Game</h3>
+        </div>
+        <div id="home-health">
+            <div class="val"></div>
+        </div>
     </div>
     <script src="level.js"></script>
 </body>

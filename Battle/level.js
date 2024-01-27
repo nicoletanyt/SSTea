@@ -1,9 +1,21 @@
-const main = document.getElementById("game");
+const selectGrid = document
+  .querySelector(".right-wrapper")
+  .querySelector(".game");
+const game = document.getElementById("middle-wrapper").querySelector(".game");
+const selectWrapper = document.querySelector(".game-wrapper");
+const gameWrapper = document.querySelector(".game-wrapper-actual");
 const rows = 9;
 const cols = 4;
 let charPos = {}; // format is ID : GRID POS
 const locked = [7, 12, 28, 32];
 const enemiesPath = [1, 5, 9, 13, 17, 18, 22, 26, 30, 34];
+const enemyFrames = [
+  "../Assets/Battle/thunder2.png",
+  "../Assets/Battle/thunder3.png",
+  "../Assets/Battle/thunder4.png",
+  "../Assets/Battle/thunder5.png",
+];
+let enemyCurr = 0;
 
 function createGrid() {
   for (let i = 0; i < cols; i++) {
@@ -27,7 +39,7 @@ function createGrid() {
       grid.addEventListener("dragover", (ev) => {
         dragover(ev);
       });
-      main.appendChild(grid);
+      selectGrid.appendChild(grid);
     }
   }
 }
@@ -36,20 +48,33 @@ createGrid();
 const grids = document.querySelectorAll(".square");
 const charGrids = document.querySelectorAll(".char-square");
 
-// Make house
-const house = document.createElement("img");
-house.src = "../Assets/Battle/house.png";
-house.classList.add("house");
-grids[34].appendChild(house);
+function createEnemy(index, grid) {
+  const enemy = document.createElement("img");
+  enemy.src = "../Assets/Battle/thunder.png";
+  grid[enemiesPath[index]].classList.add("enemy-curr");
+  grid[enemiesPath[index]].appendChild(enemy);
+}
 
-// set locked grids
-for (let i = 0; i < locked.length; ++i) {
-  grids[locked[i]].classList.add("locked");
+function createEntities(grid) {
+  // Make house
+  const house = document.createElement("img");
+  house.src = "../Assets/Battle/house.png";
+  house.classList.add("house");
+  grid[34].appendChild(house);
+
+  // set locked grids
+  for (let i = 0; i < locked.length; ++i) {
+    grid[locked[i]].classList.add("locked");
+  }
+  // set enemies path
+  for (let i = 0; i < enemiesPath.length; ++i) {
+    grid[enemiesPath[i]].classList.add("enemy");
+  }
+  // add enemy
+  createEnemy(0, grid);
 }
-// set enemies path
-for (let i = 0; i < enemiesPath.length; ++i) {
-  grids[enemiesPath[i]].classList.add("enemy");
-}
+
+createEntities(grids);
 
 function dragStart(ev) {
   ev.dataTransfer.setData("text", ev.target.id);
@@ -93,4 +118,61 @@ for (let i = 0; i < charGrids.length; i++) {
   }
 }
 
+function createGameGrid() {
+  for (let i = 0; i < cols; i++) {
+    for (let j = 0; j < rows; j++) {
+      let grid = document.createElement("div");
+      grid.classList.add("game-square");
+      game.appendChild(grid);
+    }
+  }
+}
+
 const startBtn = document.querySelector("#start-btn");
+
+startBtn.addEventListener("click", () => {
+  selectWrapper.classList.add("hidden");
+  gameWrapper.classList.remove("hidden");
+  gameWrapper.classList.add("show");
+  startGame();
+});
+
+function startGame() {
+  createGameGrid();
+  const squares = document.querySelectorAll(".game-square");
+  const enemyH = document.getElementById("enemy-health").querySelector(".val");
+  const homeH = document.getElementById("home-health").querySelector(".val");
+  let enemyHealth = 100;
+  let homeHealth = 100;
+
+  createEntities(squares);
+  enemyH.style.height = enemyHealth.toString() + "%";
+  homeH.style.height = homeHealth.toString() + "%";
+
+  let enemyMovement = setInterval(moveEnemy, 2000); // repeat this function every x ms
+  function moveEnemy() {
+    squares[enemiesPath[enemyCurr]].classList.remove("enemy-curr");
+    squares[enemiesPath[enemyCurr]].removeChild(
+      squares[enemiesPath[enemyCurr]].lastChild
+    ); // removes the image
+    enemyCurr += 1;
+    createEnemy(enemyCurr, squares);
+    if (enemyCurr == enemiesPath.length - 2) {
+      clearInterval(enemyMovement);
+
+      let enemyAttack = setInterval(attack, 2000);
+      let attackFrames = 0;
+      let img = squares[enemiesPath[enemyCurr]].children[0];
+
+      function attack() {
+        homeHealth -= 10;
+        homeH.style.height = homeHealth.toString() + "%"; // attack
+        img.src = enemyFrames[attackFrames];
+        attackFrames += 1;
+        if (attackFrames == enemyFrames.length) {
+          clearInterval(enemyAttack);
+        }
+      }
+    }
+  }
+}

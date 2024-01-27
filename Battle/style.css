@@ -128,7 +128,7 @@
 }
 
 /* FOR GAME */
-#game-wrapper {
+.game-wrapper {
   position: absolute;
   left: -5%;
   top: 18%;
@@ -136,9 +136,8 @@
   border-radius: 38px;
   border: 3px solid #895b3a;
   height: 75%;
-  width: 95%;
+  width: 100%;
   display: flex;
-  /* grid-template-columns: 20% 70%; */
 }
 #character-wrapper {
   position: relative;
@@ -171,14 +170,15 @@
   left: 13%;
   margin: 2%;
 }
-#game {
+.game {
   display: grid;
   grid-template-columns: repeat(4, 25%);
   grid-template-rows: repeat(9, 11.15%);
   height: 100%;
   border: 2px solid #895b3a;
 }
-.square {
+.square,
+.game-square {
   background: rgba(125, 178, 133, 0.8);
   border: 1.2px solid #895b3a;
   display: flex;
@@ -199,9 +199,66 @@
   background-color: #895b3a;
 }
 .square img,
+.game-square img,
 .house {
   width: 75%;
 }
 .enemy {
   background-color: #edececcc;
+}
+.enemy-curr {
+  background-color: rgba(219, 89, 89, 0.8);
+}
+#enemy-health,
+#home-health {
+  position: relative;
+  height: 90%;
+  width: 10%;
+  margin: 2%;
+  border-radius: 8px;
+  border: 2px solid #544a43;
+  margin-top: 0;
+  background: #dbe2da;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+.game-wrapper-actual {
+  margin-top: 2%;
+  background-color: #ece1bb;
+  border-radius: 38px;
+  border: 3px solid #895b3a;
+  position: absolute;
+  left: 5%;
+  width: 90%;
+  height: 75%;
+  align-self: center;
+  display: flex;
+  justify-content: center;
+  padding-top: 6%;
+}
+#middle-wrapper {
+  width: inherit;
+  height: 95%;
+  display: flex;
+  flex-direction: column;
+}
+#enemy-health .val {
+  background: #d56666;
+}
+#home-health .val {
+  background: #6bc685;
+}
+.val {
+  z-index: 1;
+  height: 30%;
+}
+#end-btn {
+  border-radius: 13px;
+  border: 2px solid #544a43;
+  background: #ec9492;
+  padding: 1%;
+  text-align: center;
+  width: 30%;
+  align-self: flex-end;
 }
