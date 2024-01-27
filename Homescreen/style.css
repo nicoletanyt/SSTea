@@ -16,6 +16,10 @@
   margin-left: 5%;
   border-radius: 16px;
 }
+.currency-display img {
+  width: 25%;
+  padding-right: 2%;
+}
 .nav-btn {
   display: flex;
   flex-direction: column;

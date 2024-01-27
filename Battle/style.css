@@ -1,35 +1,127 @@
+#main {
+  background: url(../Assets/Gallery/Background.png);
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 75%;
+  margin: 5%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 #currency-wrapper {
   display: flex;
-  justify-content: flex-start;
-  width: 50%;
+  justify-content: space-between;
+  height: 8%;
+  padding: 5%;
 }
 .currency-display {
   display: flex;
   align-items: center;
+  justify-content: space-around;
+  border-radius: 16px;
+  border: 2.5px solid #895b3a;
+  background: #f0f6ed;
+  margin: 1%;
+}
+.currency-display img {
   width: 30%;
-  justify-content: flex-start;
 }
-i {
-  padding-right: 5%;
+#levelPlant {
+  width: 85%;
 }
-#level-wrapper {
-  display: flex;
-  height: 70%;
-  width: inherit;
+
+#right-level-wrapper {
+  display: grid;
+  position: absolute;
   align-items: center;
-  padding: 10%;
+  top: 25%;
+  width: 30%;
+  height: 62%;
+  left: 60%;
+  grid-template-rows: repeat(5, 20%);
+}
+#left-level-wrapper {
+  display: grid;
+  position: absolute;
+  align-items: center;
+  top: 30%;
+  width: 30%;
+  height: 62%;
+  grid-template-rows: repeat(5, 20%);
+  left: 15%;
 }
 .level-label {
   padding: 5%;
   margin-right: 5%;
-  border: 2px solid black;
   border-radius: 5%;
+  height: 45%;
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding-left: 20%;
+  font-size: 1.5em;
 }
-.level-label:nth-child(odd) {
-  align-self: flex-start;
+.four {
+  top: -20%;
+  height: 50%;
 }
-.level-label:nth-child(even) {
-  align-self: flex-end;
+.six {
+  top: -20%;
+}
+.two {
+  top: -10%;
+}
+.three {
+  top: -20%;
+}
+.seven {
+  top: 10%;
+}
+.one {
+  top: -25%;
+}
+#left-level-wrapper .level-label {
+  padding-left: 35% !important;
+}
+
+/* STORY POPUP */
+#popup {
+  position: absolute;
+  top: 15%;
+  left: 7%;
+  width: 82%;
+  height: 75%;
+  border-radius: 30px;
+  border: 3px solid #895b3a;
+  background: #ece1bb;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+#comic {
+  width: 90%;
+}
+#popup p {
+  width: 80%;
+  text-align: justify;
+  margin-bottom: 0;
+}
+#heading {
+  display: flex;
+  align-items: center;
+}
+.close-btn {
+  font-size: 1.7em;
+  position: absolute;
+  left: 85%;
+}
+.hidden {
+  visibility: hidden;
+  pointer-events: none;
+}
+.show {
+  pointer-events: all;
 }
 
 /* SELECT CHARACTERS */
