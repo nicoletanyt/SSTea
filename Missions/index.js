@@ -79,9 +79,6 @@ function takePlant() {
     const context = canvas.getContext("2d");
     context.fillStyle = "#AAA";
     context.fillRect(0, 0, canvas.width, canvas.height);
-
-    const data = canvas.toDataURL("image/png");
-    saveToDiary(data);
   }
 
   function takepicture() {
@@ -90,10 +87,6 @@ function takePlant() {
       canvas.width = width;
       canvas.height = height;
       context.drawImage(video, 0, 0, width, height);
-
-      const data = canvas.toDataURL("image/png");
-
-      saveToDiary(data);
     } else {
       clearphoto();
     }
@@ -115,6 +108,8 @@ function takePlant() {
               isPlant = true;
               stopVideo();
 
+              const data = canvas.toDataURL("image/png");
+              saveToDiary(data);
               alert("Mission Completed!");
               popup.classList.add("hidden");
               main.classList.remove("overlay");
@@ -146,7 +141,10 @@ function takePlant() {
 
   function saveToDiary(data) {
     data.replace(/^data:image\/(png|jpg);base64,/, "");
-    localStorage.setItem("imgData", data);
+    let imgData = JSON.parse(localStorage.getItem("imgData"));
+    if (imgData == null) imgData = {};
+    imgData[new Date(Date.now())] = data;
+    localStorage.setItem("imgData", JSON.stringify(imgData));
   }
 
   startup();
