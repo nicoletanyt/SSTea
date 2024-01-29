@@ -145,6 +145,11 @@ function startGame() {
   let enemyHealth = 100;
   let homeHealth = 100;
 
+  // Add player's plants
+  for (let key in charPos) {
+    squares[charPos[key]].appendChild(document.getElementById(key));
+  }
+
   createEntities(squares);
   enemyH.style.height = enemyHealth.toString() + "%";
   homeH.style.height = homeHealth.toString() + "%";
@@ -157,6 +162,26 @@ function startGame() {
     ); // removes the image
     enemyCurr += 1;
     createEnemy(enemyCurr, squares);
+
+    function shootEnemy() {
+      // minus health from enemy
+      // modify according to plant stats
+      enemyHealth -= 10;
+      enemyH.style.height = enemyHealth.toString() + "%";
+
+      if (enemyHealth <= 0) {
+        // end game
+        endGame();
+      }
+    }
+
+    function endGame() {
+      clearInterval(enemyMovement);
+      alert("Level cleared!");
+    }
+
+    if (Object.keys(charPos).length != 0) shootEnemy();
+
     if (enemyCurr == enemiesPath.length - 2) {
       clearInterval(enemyMovement);
 
@@ -167,10 +192,17 @@ function startGame() {
       function attack() {
         homeHealth -= 10;
         homeH.style.height = homeHealth.toString() + "%"; // attack
-        img.src = enemyFrames[attackFrames];
-        attackFrames += 1;
-        if (attackFrames == enemyFrames.length) {
+
+        if (Object.keys(charPos).length != 0) shootEnemy();
+
+        if (homeHealth == 0) {
           clearInterval(enemyAttack);
+          alert("Failed.");
+        }
+
+        img.src = enemyFrames[attackFrames];
+        if (attackFrames < enemyFrames.length - 1) {
+          attackFrames += 1;
         }
       }
     }
