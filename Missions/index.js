@@ -110,7 +110,7 @@ function takePlant() {
 
               const data = canvas.toDataURL("image/png");
               saveToDiary(data);
-              alert("Mission Completed!");
+              alert("Mission Completed! The image is saved to your diary.");
               popup.classList.add("hidden");
               main.classList.remove("overlay");
 

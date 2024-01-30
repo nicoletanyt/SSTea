@@ -4,13 +4,58 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Shop</title>
 
     <link rel="stylesheet" href="../AllStyles.css">
+    <link rel="stylesheet" href="style.css">
+
+    <script src="https://kit.fontawesome.com/056eae0c7b.js" crossorigin="anonymous"></script>
+
+    <!-- import fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
 </head>
 
 <body>
+    <a class="back-btn" href="../Homescreen/index.html">
+        <i class="fa-solid fa-arrow-left"></i>
+        <!-- Back -->
+        <h1>Shop</h1>
+    </a>
 
+    <div id="main">
+        <div id="currency-wrapper">
+            <div class="currency-display">
+                <img src="../Assets/Homepage/leaf.png" />
+                <p class="leaf">23</p>
+            </div>
+            <div class="currency-display">
+                <img src="../Assets/Homepage/glucose.png" />
+                <p class="glucose">15</p>
+            </div>
+            <div class="currency-display">
+                <img src="../Assets/Homepage/oxygen.png" />
+                <p class="oxygen">30</p>
+            </div>
+        </div>
+        <div id="items">
+        </div>
+    </div>
+    <div id="popup" class="hide">
+        <div id="heading">
+            <h1>Quiz</h1>
+            <div class="close-btn">
+                <i class="fa-solid fa-close"></i>
+            </div>
+        </div>
+        <h2 class="question">Growing Tip: Why do some plants need support, like stakes or cages?</h2>
+        <p class="option"> a) To provide additional warmth during colder weather </p>
+        <p class="option"> b) To give them stability and prevent bending or breaking </p>
+        <p class="option"> c) To help them grow sideways and explore more space </p>
+        <p class="option"> d) To protect them from too much sunlight </p>
+    </div>
+    <script src="index.js"></script>
 </body>
 
 </html>
