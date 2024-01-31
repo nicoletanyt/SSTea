@@ -7,9 +7,12 @@
     <title>Plant Details</title>
 
     <script src="https://kit.fontawesome.com/056eae0c7b.js" crossorigin="anonymous"></script>
+
+    <!-- import fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Hedvig+Letters+Sans&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Irish+Grover&display=swap" rel="stylesheet">
+
 
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="../AllStyles.css">
@@ -17,20 +20,20 @@
 </head>
 
 <body>
-    <a class="back-btn" href="../Homescreen/index.html">
+    <a class="back-btn" href="../Plants/index.html">
         <i class="fa-solid fa-arrow-left"></i>
         <h1 class="name">Name of Plant</h1>
     </a>
     <div id="main">
         <h3 class="name">Name of Plant</h3>
-        <img id="plantImg" src="/Assets/Gallery/Test.png" />
+        <img id="plantImg" />
         <div id="stats-wrapper">
             <h3 id="level">Level 5</h3>
             <div id="table-wrapper">
                 <div class="stat-row">
                     <div class="stat-val">
                         <p>HP: </p>
-                        <p>20</p>
+                        <p stat="HP-val">20</p>
                     </div>
                     <div class="upgrade-btn" stat="HP">
                         Level Up
@@ -40,7 +43,7 @@
                 <div class="stat-row">
                     <div class="stat-val">
                         <p>ATK: </p>
-                        <p>20</p>
+                        <p stat="ATK-val">20</p>
                     </div>
                     <div class="upgrade-btn" stat="ATK">
                         Level Up
@@ -50,16 +53,13 @@
                 <div class="stat-row">
                     <div class="stat-val">
                         <p>Range: </p>
-                        <p>20</p>
+                        <p stat="Range-val">20</p>
                     </div>
                     <div class="upgrade-btn">
                         Level Up
                     </div>
                 </div>
 
-            </div>
-            <div class="level-btn">
-                <h3>Level up plant</h3>
             </div>
         </div>
     </div>
@@ -73,16 +73,16 @@
         <h3>Materials Needed:</h3>
         <div id="materials-grid">
             <div class="material">
-                <img src="../Assets/Gallery/placeholder.png" />
+                <img src="../Assets/Homepage/glucose.png" />
                 <p class="multiplier">x3</p>
             </div>
             <div class="material">
-                <img src="../Assets/Gallery/placeholder.png" />
-                <p class="multiplier">x6</p>
+                <img src="../Assets/Homepage/oxygen.png" />
+                <p class="multiplier">x3</p>
             </div>
             <div class="material">
-                <img src="../Assets/Gallery/placeholder.png" />
-                <p class="multiplier">x9</p>
+                <img src="../Assets/Homepage/leaf.png" />
+                <p class="multiplier">x1</p>
             </div>
         </div>
         <div id="level-change">

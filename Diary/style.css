@@ -8,6 +8,7 @@
   background: url(../Assets/Gallery/Background.png);
   background-size: contain;
   background-repeat: no-repeat;
+  background-size: 85vw 69vh;
   overflow-y: scroll;
   padding: 4%;
   column-gap: 4%;

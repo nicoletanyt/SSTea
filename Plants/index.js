@@ -1,14 +1,16 @@
-import { userData } from "../Data.js";
+import { data } from "../Data.js";
 // let userData = JSON.parse(localStorage.getItem("userInfo"));
 
-const createPlantDisplay = (locked) => {
+let userData = data;
+
+const createPlantDisplay = (plant) => {
   let displayWrapper = document.createElement("div");
   displayWrapper.classList.add("plant-display");
   let icon = document.createElement("img");
-  if (locked) {
+  if (plant.locked) {
     icon.src = "../Assets/Gallery/Lock.png";
   } else {
-    // icon.classList.add("fa-tree");
+    icon.src = plant.image;
   }
   displayWrapper.appendChild(icon);
   return displayWrapper;
@@ -17,11 +19,10 @@ const createPlantDisplay = (locked) => {
 function displayGallery() {
   const plantWrapper = document.querySelector("#gallery-wrapper");
   for (let i = 0; i < userData["plants"].length; i++) {
-    let plantDiv = createPlantDisplay(userData["plants"][i].locked);
+    let plantDiv = createPlantDisplay(userData["plants"][i]);
     plantWrapper.appendChild(plantDiv);
 
     if (!userData["plants"][i].locked) {
-      plantDiv.classList.add("pointer-hover");
       plantDiv.addEventListener("click", () => {
         window.localStorage.setItem("plantIndex", i);
         window.location.pathname = "./Plants/plantDetail.html";
@@ -36,8 +37,8 @@ const createDetailsDisplay = (plant) => {
   const level = document.querySelector("#level");
   const stats = document.querySelectorAll(".stat-val");
 
-  // plantImg.src = plant["img"];
-  name[0].textContent = plant["name"]; // two labels
+  plantImg.src = plant["image"];
+  name[0].textContent = "Plants Gallery";
   name[1].textContent = plant["name"];
   level.textContent = "Level " + plant["stats"]["level"];
 
@@ -51,30 +52,65 @@ function displayDetails() {
   createDetailsDisplay(userData["plants"][selectedIndex]);
 
   const upgradeBtns = document.querySelectorAll(".upgrade-btn");
-  const levelBtn = document.querySelector(".level-btn");
 
   for (let i = 0; i < upgradeBtns.length; ++i) {
     upgradeBtns[i].addEventListener("click", () => {
-      displayLevelUp(upgradeBtns[i].getAttribute("stat"));
+      displayLevelUp(
+        upgradeBtns[i].getAttribute("stat"),
+        userData["plants"][selectedIndex]
+      );
     });
   }
-
-  levelBtn.addEventListener("click", () => {
-    updateDetails(userData, "level", selectedIndex);
-  });
 }
 
-const displayLevelUp = (stat) => {
+const displayLevelUp = (upgradeStat, plant) => {
   const main = document.querySelector("#main");
   const popUp = document.querySelector("#popup");
   const closeBtn = document.querySelector(".close-btn");
+  const levelUpBtn = document.querySelector("#level-up-btn");
+  const beforeVal = document.querySelector(".before-val");
+  const afterVal = document.querySelector(".after-val");
+
   main.classList.add("blur");
   popUp.classList.add("visible");
+
+  // set values
+  beforeVal.textContent = plant["stats"][upgradeStat];
+  afterVal.textContent = plant["stats"][upgradeStat] + 200;
 
   closeBtn.addEventListener("click", () => {
     main.classList.remove("blur");
     popUp.classList.remove("visible");
   });
+
+  function upgrade() {
+    if (
+      // just example vals
+      userData["currency"]["glucose"] >= 3 &&
+      userData["currency"]["oxygen"] >= 3 &&
+      userData["currency"]["leaf"] >= 1
+    ) {
+      // available upgrade
+      userData["currency"]["glucose"] -= 3;
+      userData["currency"]["oxygen"] -= 3;
+      userData["currency"]["leaf"] -= 1;
+
+      // upgrade json of plant stats
+      plant["stats"][upgradeStat] = parseInt(afterVal.textContent);
+      plant["stats"]["level"] += 1;
+      createDetailsDisplay(plant);
+
+      // close popup
+      main.classList.remove("blur");
+      popUp.classList.remove("visible");
+    } else {
+      // e.stopImmediatePropagation();
+      alert("You do not have enough materials to upgrade.");
+    }
+    levelUpBtn.removeEventListener("click", upgrade);
+  }
+
+  levelUpBtn.addEventListener("click", upgrade);
 };
 
 if (window.location.pathname == "/Plants/index.html") {

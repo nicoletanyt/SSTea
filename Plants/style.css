@@ -6,36 +6,33 @@ body {
   margin-top: 5%;
   height: 90%;
   grid-template-columns: repeat(3, 30%);
-  grid-template-rows: repeat(3, 15%);
+  grid-template-rows: repeat(3, 18%);
   column-gap: 5%;
   row-gap: 5%;
 }
 .plant-display {
   display: flex;
-  background-color: lightblue;
-  border: 2px solid #544a43;
+  background-image: url("../Assets/Gallery/Box.png");
+  background-repeat: no-repeat;
+  background-size: contain;
   align-items: center;
   justify-content: center;
-  font-size: 2em;
 }
-.pointer-hover:hover,
-.level-btn:hover,
-.upgrade-btn:hover {
-  cursor: pointer;
+.plant-display img {
+  width: 60%;
 }
 #main {
   display: flex;
   flex-direction: column;
   align-items: center;
-  height: 75%;
+  height: 80%;
   margin: 5%;
   background: url(../Assets/Gallery/Background.png);
-  background-size: contain;
   background-repeat: no-repeat;
+  background-size: 85vw 69vh;
 }
-#main #plantImg {
-  width: 70%;
-  height: auto;
+#plantImg {
+  width: 50%;
   border-radius: 2.5%;
 }
 #stats-wrapper {
@@ -68,15 +65,6 @@ body {
   align-items: center;
   padding-bottom: 2%;
   color: #544a43;
-}
-.level-btn {
-  color: #544a43;
-  width: 70%;
-  margin-top: 10%;
-  border-radius: 13px;
-  border: 2px solid #544a43;
-  background: #edf3a1;
-  text-align: center;
 }
 .stat-val {
   width: 55%;
@@ -134,10 +122,12 @@ body {
 }
 .material {
   border: 2px solid #544a43;
+  background-color: #f0f6ed;
   border-radius: 13px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  padding-top: 5%;
 }
 .material p {
   text-align: center;
