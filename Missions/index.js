@@ -2,6 +2,13 @@ const main = document.getElementById("main");
 const popup = document.getElementById("popup");
 const missions = document.querySelectorAll(".mission");
 const closeButton = document.querySelector(".close-btn");
+const missionList = {
+  "take-img": missions[0],
+  "water-plant": missions[1],
+  "3-battles": missions[2],
+};
+
+let userData = JSON.parse(localStorage.getItem("userInfo"));
 
 function takePlant() {
   const width = 320; // scale photo to this
@@ -115,16 +122,8 @@ function takePlant() {
               main.classList.remove("overlay");
 
               // save progress to local storage
-              let cMissions = JSON.parse(
-                localStorage.getItem("completedMissions")
-              );
-              if (cMissions) cMissions.push("water-plant");
-              else cMissions = ["water-plant"];
-              localStorage.setItem(
-                "completedMissions",
-                JSON.stringify(cMissions)
-              );
-
+              userData["completedMissions"].push("water-plant");
+              localStorage.setItem("userInfo", JSON.stringify(userData));
               listMissions();
               return;
             }
@@ -151,10 +150,10 @@ function takePlant() {
 }
 
 function listMissions() {
-  let completedMissions = JSON.parse(localStorage.getItem("completedMissions")); // should return a [] of strings
+  let completedMissions = userData["completedMissions"];
   // since there's not many missions/there's a fixed number, just use indexing
-  if (completedMissions.indexOf("water-plant") != undefined) {
-    missions[0].classList.add("completed");
+  for (let i = 0; i < completedMissions.length; ++i) {
+    missionList[completedMissions[i]].classList.add("untoggled");
   }
 }
 
@@ -173,19 +172,20 @@ function stopVideo() {
 
   video.srcObject = null;
 
-  console.log(localStorage.getItem("imgData"));
+  // console.log(localStorage.getItem("imgData"));
 }
 
 // since there's not many missions/there's a fixed number, just use indexing
-missions[0].addEventListener("click", () => {
+missionList["take-img"].addEventListener("click", () => {
   popup.classList.remove("hidden");
   main.classList.add("overlay");
-  stopVideo();
-
-  takePlant();
   closeButton.addEventListener("click", () => {
     popup.classList.add("hidden");
     main.classList.remove("overlay");
     stopVideo();
   });
+
+  stopVideo();
+
+  takePlant();
 });

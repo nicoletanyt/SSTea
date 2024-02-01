@@ -5,6 +5,7 @@ export let data = {
     oxygen: 10,
     leaf: 30,
   },
+  completedMissions: [],
   plants: [
     {
       name: "Bokchoy",

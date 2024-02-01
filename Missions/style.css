@@ -13,6 +13,7 @@
 .mission-row {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   background-color: #f0f6ed;
   border: 2px solid #895b3a;
   width: 80%;
@@ -20,6 +21,21 @@
   margin-top: 8%;
   color: #544a43;
   padding: 4%;
+}
+.mission {
+  height: 4%;
+}
+.reward {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  width: 25%;
+}
+.reward img {
+  width: 50%;
+}
+.mission-row p {
+  font-size: 1.5em;
 }
 .heading-row {
   display: flex;
@@ -33,9 +49,6 @@
 .overlay {
   pointer-events: none;
   filter: blur(1px);
-}
-.completed {
-  background-color: lightcoral;
 }
 #popup {
   position: absolute;
@@ -85,4 +98,7 @@ video,
 .hidden {
   pointer-events: none;
   visibility: hidden;
+}
+.untoggled {
+  background-color: #c8cbc6;
 }
