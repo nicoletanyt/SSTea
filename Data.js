@@ -1,7 +1,7 @@
 export let data = {
   currency: {
     glucose: 20,
-    sunpower: 20,
+    sunpower: 30,
     oxygen: 10,
     leaf: 30,
   },

@@ -1,7 +1,8 @@
-import { data } from "../Data.js";
-// let userData = JSON.parse(localStorage.getItem("userInfo"));
+// import { data } from "../Data.js";
+let data = JSON.parse(localStorage.getItem("userInfo"));
 
 let userData = data;
+console.log(userData);
 
 const createPlantDisplay = (plant) => {
   let displayWrapper = document.createElement("div");
@@ -63,6 +64,10 @@ function displayDetails() {
   }
 }
 
+function saveToLS() {
+  localStorage.setItem("userInfo", JSON.stringify(userData));
+}
+
 const displayLevelUp = (upgradeStat, plant) => {
   const main = document.querySelector("#main");
   const popUp = document.querySelector("#popup");
@@ -99,6 +104,7 @@ const displayLevelUp = (upgradeStat, plant) => {
       plant["stats"][upgradeStat] = parseInt(afterVal.textContent);
       plant["stats"]["level"] += 1;
       createDetailsDisplay(plant);
+      saveToLS();
 
       // close popup
       main.classList.remove("blur");

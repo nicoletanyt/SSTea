@@ -4,6 +4,7 @@ const selectGrid = document
 const game = document.getElementById("middle-wrapper").querySelector(".game");
 const selectWrapper = document.querySelector(".game-wrapper");
 const gameWrapper = document.querySelector(".game-wrapper-actual");
+const charSquares = document.querySelectorAll(".char-square");
 const rows = 9;
 const cols = 4;
 let charPos = {}; // format is ID : GRID POS
@@ -16,6 +17,21 @@ const enemyFrames = [
   "../Assets/Battle/thunder5.png",
 ];
 let enemyCurr = 0;
+let totalChar = 0;
+let userData = JSON.parse(localStorage.getItem("userInfo"));
+
+function loadPlants() {
+  for (let i = 0; i < userData["plants"].length; ++i) {
+    if (!userData["plants"][i].locked) {
+      let img = document.createElement("img");
+      img.src = userData["plants"][i]["image"];
+      img.draggable = true;
+      img.id = "char-" + (totalChar + 1).toString();
+      charSquares[totalChar].appendChild(img);
+      totalChar += 1;
+    }
+  }
+}
 
 function createGrid() {
   for (let i = 0; i < cols; i++) {
@@ -45,6 +61,7 @@ function createGrid() {
 }
 
 createGrid();
+loadPlants();
 const grids = document.querySelectorAll(".square");
 const charGrids = document.querySelectorAll(".char-square");
 
@@ -170,8 +187,9 @@ function startGame() {
       enemyH.style.height = enemyHealth.toString() + "%";
 
       if (enemyHealth <= 0) {
-        // end game
+        // end game and return to homepage
         endGame();
+        window.location.pathname = "/Homescreen/index.html";
       }
     }
 

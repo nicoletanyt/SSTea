@@ -2,10 +2,23 @@
   display: flex;
   justify-content: flex-end;
 }
-#user-pic {
+#user-div {
   position: absolute;
   width: 25%;
   left: 5%;
+}
+#user-div h2 {
+  text-decoration: none;
+  color: #544a43;
+  position: absolute;
+  left: 5%;
+  margin-top: 0;
+}
+#user-pic {
+  background-image: url("../Assets/Homepage/Border.png");
+  background-repeat: no-repeat;
+  width: 100%;
+  background-size: 24vw 14svh;
 }
 #main {
   display: flex;
