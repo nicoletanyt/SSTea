@@ -6,16 +6,14 @@ const leaf = document.querySelector(".leaf");
 const oxygen = document.querySelector(".oxygen");
 const glucose = document.querySelector(".glucose");
 
+let userData = JSON.parse(localStorage.getItem("userInfo"));
+
 // set the values from localStorage
 function getValues() {
-  const names = ["SSTea-Leaf", "SSTea-Glucose", "SSTea-Oxygen"];
+  const names = ["leaf", "glucose", "oxygen"];
   const elements = [leaf, glucose, oxygen];
   for (let i = 0; i < names.length; ++i) {
-    if (localStorage.getItem(names[i]) == undefined) {
-      elements[i].textContent = 10;
-    } else {
-      elements[i].textContent = localStorage.getItem(names[i]);
-    }
+    elements[i].textContent = userData["currency"][names[i]];
   }
 }
 
@@ -24,32 +22,29 @@ getValues();
 const items = [
   {
     img: "../Assets/Homepage/glucose.png",
+    item: "glucose",
     desc: "x10",
     cost: "x1",
   },
   {
     img: "../Assets/Homepage/sun.png",
+    item: "sunpower",
     desc: "x10",
     cost: "x1",
   },
   {
     img: "../Assets/Homepage/oxygen.png",
+    item: "oxygen",
     desc: "x10",
     cost: "x1",
   },
   {
     img: "../Assets/Homepage/question.png",
+    item: "leaf",
     desc: "Quiz",
     cost: "x3",
   },
 ];
-
-function save() {
-  // save the details to localStorage
-  localStorage.setItem("SSTea-Leaf", leaf.textContent);
-  localStorage.setItem("SSTea-Glucose", glucose.textContent);
-  localStorage.setItem("SSTea-Oyxgen", oxygen.textContent);
-}
 
 for (let i = 0; i < items.length; ++i) {
   let itemWrapper = document.createElement("div");
@@ -83,6 +78,13 @@ for (let i = 0; i < items.length; ++i) {
     if (parseInt(items[i].cost.substring(1)) <= parseInt(leaf.textContent)) {
       leaf.textContent =
         parseInt(leaf.textContent) - parseInt(items[i].cost.substring(1));
+      userData["currency"]["leaf"] -= parseInt(items[i].cost.substring(1));
+      userData["currency"][items[i].item] += parseInt(
+        items[i].desc.substring(1)
+      );
+      console.log(items[i].desc.substring(1));
+      alert("Purchase successful");
+      getValues();
     } else {
       alert("You do not have enough leaf points");
     }
@@ -102,6 +104,8 @@ for (let i = 0; i < items.length; ++i) {
           // The second option is the correct one. If expanding more questions, use a dictionary instead.
           alert("Correct! You get 3 leaf points.");
           leaf.textContent = parseInt(leaf.textContent) + 3;
+          userData["currency"]["leaf"] += 3;
+          getValues();
         } else {
           alert("Wrong.");
         }
@@ -128,6 +132,7 @@ for (let i = 0; i < items.length; ++i) {
       });
     }
 
-    save();
+    // save to localStorage
+    localStorage.setItem("userInfo", JSON.stringify(userData));
   });
 }
