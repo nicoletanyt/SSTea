@@ -11,7 +11,7 @@ const missionList = {
 let userData = JSON.parse(localStorage.getItem("userInfo"));
 
 function takePlant() {
-  const width = 320; // scale photo to this
+  const width = 180; // scale photo to this
   let height = 0; // computed
 
   let streaming = false;
