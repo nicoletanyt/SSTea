@@ -161,7 +161,7 @@ function stopVideo() {
   const video = document.getElementById("video");
 
   navigator.mediaDevices
-    .getUserMedia({ video: true, audio: false })
+    .getUserMedia({ video: { facingMode: "environment" }, audio: false })
     .then((mediaStream) => {
       const stream = mediaStream;
       const tracks = stream.getTracks();
@@ -185,7 +185,7 @@ missionList["take-img"].addEventListener("click", () => {
     stopVideo();
   });
 
-  stopVideo();
+  // stopVideo();
 
   takePlant();
 });
