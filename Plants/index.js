@@ -9,7 +9,7 @@ const createPlantDisplay = (plant) => {
   displayWrapper.classList.add("plant-display");
   let icon = document.createElement("img");
   if (plant.locked) {
-    icon.src = "../Assets/Gallery/Lock.png";
+    icon.src = "./Assets/Gallery/Lock.png";
   } else {
     icon.src = plant.image;
   }

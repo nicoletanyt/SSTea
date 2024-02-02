@@ -9,7 +9,7 @@ export let data = {
   plants: [
     {
       name: "Bokchoy",
-      image: "../Assets/Gallery/bokchoy.png",
+      image: "./Assets/Gallery/bokchoy.png",
       locked: false,
       stats: {
         HP: 200,
@@ -20,7 +20,7 @@ export let data = {
     },
     {
       name: "Sunflower",
-      image: "../Assets/Gallery/sunflower.png",
+      image: "./Assets/Gallery/sunflower.png",
       locked: false,
       stats: {
         HP: 200,
@@ -31,7 +31,7 @@ export let data = {
     },
     {
       name: "Tulip",
-      image: "../Assets/Gallery/tulip.png",
+      image: "./Assets/Gallery/tulip.png",
       locked: false,
       stats: {
         HP: 200,

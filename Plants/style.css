@@ -12,7 +12,7 @@ body {
 }
 .plant-display {
   display: flex;
-  background-image: url("../Assets/Gallery/Box.png");
+  background-image: url("./Assets/Gallery/Box.png");
   background-repeat: no-repeat;
   background-size: contain;
   align-items: center;
@@ -27,7 +27,7 @@ body {
   align-items: center;
   height: 80%;
   margin: 5%;
-  background: url(../Assets/Gallery/Background.png);
+  background: url(./Assets/Gallery/Background.png);
   background-repeat: no-repeat;
   background-size: 85vw 69vh;
 }

@@ -1,5 +1,5 @@
 #main {
-  background: url(../Assets/Gallery/Background.png);
+  background: url(./Assets/Gallery/Background.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-size: 85vw 69vh;
@@ -152,7 +152,7 @@
   width: 20%;
 }
 .char-square {
-  background-image: url("../Assets/Homepage/Border.png");
+  background-image: url("./Assets/Homepage/Border.png");
   background-size: contain;
   background-repeat: no-repeat;
   display: flex;
