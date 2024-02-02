@@ -10,7 +10,7 @@ let userData;
 userData = data;
 
 // store to local storage
-localStorage.setItem("userInfo", JSON.stringify(userData));
+localStorage.setItem("userInfo", JSON.stringify(data));
 
 // load values
 const sun = document.querySelector(".sunpower");
