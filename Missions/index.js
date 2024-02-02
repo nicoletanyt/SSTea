@@ -41,7 +41,7 @@ function takePlant() {
       .getUserMedia({ video: { facingMode: "environment" }, audio: false })
       .then((stream) => {
         video.srcObject = stream;
-        video.play();
+        // video.play();
       })
       .catch((err) => {
         console.error(`An error occurred: ${err}`);
