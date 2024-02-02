@@ -9,7 +9,6 @@ body {
   background: url("../Assets/Homepage/Background.png");
   background: url("./Assets/Homepage/Background.png");
   background-repeat: no-repeat;
-  /* background-size: contain; */
   padding: 3%;
   padding-top: 2%;
   padding-bottom: 1%;
@@ -24,7 +23,7 @@ body {
   color: #544a43;
   display: flex;
   align-items: center;
-  margin-top: 8%;
+  padding-top: 3%;
 }
 .back-btn .fa-arrow-left {
   padding: 5%;

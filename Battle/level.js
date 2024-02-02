@@ -189,7 +189,8 @@ function startGame() {
       if (enemyHealth <= 0) {
         // end game and return to homepage
         endGame();
-        window.location.pathname = "/SSTea/";
+        // window.location.pathname = "/SSTea/";
+        window.location.pathname = "../";
       }
     }
 

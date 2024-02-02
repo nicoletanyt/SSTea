@@ -21,5 +21,5 @@ for (let i = 0; i < levels.length; i++) {
   });
 }
 closeBtn.addEventListener("click", () => {
-  window.location.pathname = "SSTea/Battle/level.html";
+  window.location.pathname = "/Battle/level.html"; // add /SSTea if doesnt work
 });

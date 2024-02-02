@@ -28,7 +28,7 @@ function displayGallery() {
     if (!userData["plants"][i].locked) {
       plantDiv.addEventListener("click", () => {
         window.localStorage.setItem("plantIndex", i);
-        window.location.pathname = "/SSTea/Plants/plantDetail.html";
+        window.location.pathname = "/Plants/plantDetail.html"; // if github doesn't work, add /SSTea
       });
     }
   }
@@ -121,8 +121,9 @@ const displayLevelUp = (upgradeStat, plant) => {
   levelUpBtn.addEventListener("click", upgrade);
 };
 
-if (window.location.pathname == "/SSTea/Plants/") {
+// if github doesnt work, add "/SSTea"
+if (window.location.pathname == "/Plants/") {
   displayGallery();
-} else if (window.location.pathname == "/SSTea/Plants/plantDetail.html") {
+} else if (window.location.pathname == "/Plants/plantDetail.html") {
   displayDetails();
 }

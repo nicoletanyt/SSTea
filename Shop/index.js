@@ -21,19 +21,19 @@ getValues();
 
 const items = [
   {
-    img: "../Assets/Homepage/glucose.png",
+    img: "../Assets/Shop/Glucose.png",
     item: "glucose",
     desc: "x10",
     cost: "x1",
   },
   {
-    img: "../Assets/Homepage/sun.png",
+    img: "../Assets/Shop/Sun.png",
     item: "sunpower",
     desc: "x10",
     cost: "x1",
   },
   {
-    img: "../Assets/Homepage/oxygen.png",
+    img: "../Assets/Shop/Oxygen.png",
     item: "oxygen",
     desc: "x10",
     cost: "x1",
@@ -52,24 +52,26 @@ for (let i = 0; i < items.length; ++i) {
   let img = document.createElement("img");
   img.src = items[i].img;
 
+  let rightWrapper = document.createElement("div");
+  rightWrapper.classList.add("desc-wrapper");
+
   let desc = document.createElement("p");
-  desc.textContent = items[i].desc;
+  desc.textContent =
+    items[i].item[0].toUpperCase() +
+    items[i].item.substring(1) +
+    ":  " +
+    items[i].desc;
 
-  let costWrapper = document.createElement("div");
-  costWrapper.classList.add("cost");
+  // let costWrapper = document.createElement("div");
+  // costWrapper.classList.add("cost");
   let cost = document.createElement("p");
-  cost.textContent = items[i].cost;
+  cost.textContent = items[i].cost + " leaf points";
 
-  let leafImg = document.createElement("img");
-  leafImg.src = "../Assets/Homepage/leaf.png";
-
+  rightWrapper.appendChild(desc);
+  rightWrapper.append(cost);
   itemWrapper.appendChild(img);
-  itemWrapper.appendChild(desc);
-  itemWrapper.appendChild(cost);
 
-  costWrapper.appendChild(leafImg);
-  costWrapper.appendChild(cost);
-  itemWrapper.appendChild(costWrapper);
+  itemWrapper.appendChild(rightWrapper);
 
   shopItems.appendChild(itemWrapper);
 

@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
 }
 
 #currency-wrapper {
@@ -29,63 +30,26 @@
   width: 30%;
 }
 #levelPlant {
-  width: 85%;
-  height: 82%;
-  resize: both;
+  width: 80%;
 }
-
-#right-level-wrapper {
+#levels {
   display: grid;
   position: absolute;
-  align-items: center;
-  top: 28%;
-  width: 30%;
-  height: 62%;
-  left: 60%;
-  grid-template-rows: repeat(5, 20%);
-}
-#left-level-wrapper {
-  display: grid;
-  position: absolute;
-  align-items: center;
+  grid-template-rows: repeat(4, 17%);
+  column-gap: 28%;
+  row-gap: 8%;
+  grid-template-columns: repeat(2, 20%);
+  height: 60%;
+  width: 80%;
+  align-self: center;
+  left: 22%;
   top: 32%;
-  width: 30%;
-  height: 62%;
-  grid-template-rows: repeat(5, 20%);
-  left: 15%;
 }
-.level-label {
-  padding: 5%;
-  margin-right: 5%;
-  border-radius: 5%;
-  height: 45%;
-  position: relative;
+#plantWrapper {
   display: flex;
+  justify-content: center;
   align-items: center;
-  padding-left: 20%;
-  font-size: 1.5em;
-}
-.four {
-  top: -20%;
-  height: 50%;
-}
-.six {
-  top: -20%;
-}
-.two {
-  top: -10%;
-}
-.three {
-  top: -20%;
-}
-.seven {
-  top: 10%;
-}
-.one {
-  top: -25%;
-}
-#left-level-wrapper .level-label {
-  padding-left: 35% !important;
+  height: 80%;
 }
 
 /* STORY POPUP */
@@ -101,6 +65,8 @@
   display: flex;
   align-items: center;
   flex-direction: column;
+  overflow-y: scroll;
+  padding-bottom: 5%;
 }
 #comic {
   width: 75%;
@@ -191,6 +157,7 @@
   width: 30%;
   align-self: flex-end;
   text-align: center;
+  padding: 3%;
 }
 .remove-click {
   pointer-events: none;

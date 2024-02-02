@@ -1,6 +1,7 @@
 #topbar {
   display: flex;
   justify-content: flex-end;
+  padding-top: 4%;
 }
 #user-div {
   position: absolute;
@@ -15,17 +16,17 @@
   margin-top: 0;
 }
 #user-pic {
-  background-image: url("../Assets/Homepage/Border.png");
-  background-repeat: no-repeat;
   width: 100%;
   background-size: 24vw 14svh;
 }
 #main {
   display: flex;
   justify-content: center;
+  height: 70%;
 }
 #pic {
   align-self: flex-end;
+  height: 100%;
 }
 .currency-display {
   display: flex;
@@ -49,9 +50,6 @@
   border-radius: 4%;
   text-decoration: none;
   border: #895b3a;
-  background-image: url("../Assets/Homepage/Border.png");
-  background-repeat: no-repeat;
-  background-size: contain;
 }
 #nav-wrapper {
   display: grid;
