@@ -1,11 +1,13 @@
 import { data } from "../Data.js";
 let userData;
 
-if (localStorage.getItem("userInfo") == undefined) {
-  userData = data; // set starting data
-} else {
-  userData = JSON.parse(localStorage.getItem("userInfo"));
-}
+// if (localStorage.getItem("userInfo") == undefined) {
+//   userData = data; // set starting data
+// } else {
+//   userData = JSON.parse(localStorage.getItem("userInfo"));
+// }
+
+userData = data;
 
 // store to local storage
 localStorage.setItem("userInfo", JSON.stringify(userData));
