@@ -119,8 +119,8 @@ const displayLevelUp = (upgradeStat, plant) => {
   levelUpBtn.addEventListener("click", upgrade);
 };
 
-if (window.location.pathname == "/Plants/index.html") {
+if (window.location.pathname == "SSTea/Plants/index.html") {
   displayGallery();
-} else if (window.location.pathname == "/Plants/plantDetail.html") {
+} else if (window.location.pathname == "SSTea/Plants/plantDetail.html") {
   displayDetails();
 }
