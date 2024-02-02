@@ -26,7 +26,7 @@ function displayGallery() {
     if (!userData["plants"][i].locked) {
       plantDiv.addEventListener("click", () => {
         window.localStorage.setItem("plantIndex", i);
-        window.location.pathname = "./Plants/plantDetail.html";
+        window.location.pathname = "/SSTea/Plants/plantDetail.html";
       });
     }
   }
@@ -119,7 +119,7 @@ const displayLevelUp = (upgradeStat, plant) => {
   levelUpBtn.addEventListener("click", upgrade);
 };
 
-if (window.location.pathname == "SSTea/Plants/index.html") {
+if (window.location.pathname == "SSTea/Plants/") {
   displayGallery();
 } else if (window.location.pathname == "SSTea/Plants/plantDetail.html") {
   displayDetails();
