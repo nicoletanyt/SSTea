@@ -21,25 +21,25 @@ getValues();
 
 const items = [
   {
-    img: "./Assets/Homepage/glucose.png",
+    img: "../Assets/Homepage/glucose.png",
     item: "glucose",
     desc: "x10",
     cost: "x1",
   },
   {
-    img: "./Assets/Homepage/sun.png",
+    img: "../Assets/Homepage/sun.png",
     item: "sunpower",
     desc: "x10",
     cost: "x1",
   },
   {
-    img: "./Assets/Homepage/oxygen.png",
+    img: "../Assets/Homepage/oxygen.png",
     item: "oxygen",
     desc: "x10",
     cost: "x1",
   },
   {
-    img: "./Assets/Homepage/question.png",
+    img: "../Assets/Homepage/question.png",
     item: "leaf",
     desc: "Quiz",
     cost: "x3",
@@ -61,7 +61,7 @@ for (let i = 0; i < items.length; ++i) {
   cost.textContent = items[i].cost;
 
   let leafImg = document.createElement("img");
-  leafImg.src = "./Assets/Homepage/leaf.png";
+  leafImg.src = "../Assets/Homepage/leaf.png";
 
   itemWrapper.appendChild(img);
   itemWrapper.appendChild(desc);

@@ -6,7 +6,7 @@ html {
   color: #544a43;
 }
 body {
-  background: url("./Assets/Homepage/Background.png");
+  background: url("../Assets/Homepage/Background.png");
   background-repeat: no-repeat;
   /* background-size: contain; */
   padding: 3%;

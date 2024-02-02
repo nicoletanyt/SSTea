@@ -11,10 +11,10 @@ let charPos = {}; // format is ID : GRID POS
 const locked = [7, 12, 28, 32];
 const enemiesPath = [1, 5, 9, 13, 17, 18, 22, 26, 30, 34];
 const enemyFrames = [
-  "./Assets/Battle/thunder2.png",
-  "./Assets/Battle/thunder3.png",
-  "./Assets/Battle/thunder4.png",
-  "./Assets/Battle/thunder5.png",
+  "../Assets/Battle/thunder2.png",
+  "../Assets/Battle/thunder3.png",
+  "../Assets/Battle/thunder4.png",
+  "../Assets/Battle/thunder5.png",
 ];
 let enemyCurr = 0;
 let totalChar = 0;
@@ -67,7 +67,7 @@ const charGrids = document.querySelectorAll(".char-square");
 
 function createEnemy(index, grid) {
   const enemy = document.createElement("img");
-  enemy.src = "./Assets/Battle/thunder.png";
+  enemy.src = "../Assets/Battle/thunder.png";
   grid[enemiesPath[index]].classList.add("enemy-curr");
   grid[enemiesPath[index]].appendChild(enemy);
 }
@@ -75,7 +75,7 @@ function createEnemy(index, grid) {
 function createEntities(grid) {
   // Make house
   const house = document.createElement("img");
-  house.src = "./Assets/Battle/house.png";
+  house.src = "../Assets/Battle/house.png";
   house.classList.add("house");
   grid[34].appendChild(house);
 
