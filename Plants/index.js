@@ -5,6 +5,7 @@ let userData = data;
 console.log(userData);
 
 const createPlantDisplay = (plant) => {
+  console.log(plant);
   let displayWrapper = document.createElement("div");
   displayWrapper.classList.add("plant-display");
   let icon = document.createElement("img");
@@ -18,6 +19,7 @@ const createPlantDisplay = (plant) => {
 };
 
 function displayGallery() {
+  console.log("Display Gallery");
   const plantWrapper = document.querySelector("#gallery-wrapper");
   for (let i = 0; i < userData["plants"].length; i++) {
     let plantDiv = createPlantDisplay(userData["plants"][i]);
