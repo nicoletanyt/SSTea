@@ -179,11 +179,13 @@ function stopVideo() {
 missionList["take-img"].addEventListener("click", () => {
   popup.classList.remove("hidden");
   main.classList.add("overlay");
-  closeButton.addEventListener("click", () => {
+  function closePopup() {
     popup.classList.add("hidden");
     main.classList.remove("overlay");
     stopVideo();
-  });
+    closeButton.removeEventListener("click", closePopup);
+  }
+  closeButton.addEventListener("click", closePopup);
 
   // stopVideo();
 
