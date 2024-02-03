@@ -127,6 +127,8 @@ function takePlant() {
               // save progress to local storage
               userData["completedMissions"].push("water-plant");
               localStorage.setItem("userInfo", JSON.stringify(userData));
+
+              console.log(userData);
               listMissions();
               return;
             }
@@ -138,16 +140,16 @@ function takePlant() {
           startButton.removeEventListener("click", handler, false);
         }
         closeButton.classList.remove("hidden");
+        startButton.addEventListener("click", handler, false);
       });
     });
   }
 
   function saveToDiary(data) {
     data.replace(/^data:image\/(png|jpg);base64,/, "");
-    let imgData = JSON.parse(localStorage.getItem("imgData"));
-    if (imgData == null) imgData = {};
-    imgData[new Date(Date.now())] = data;
-    localStorage.setItem("imgData", JSON.stringify(imgData));
+    userData["diary"][new Date(Date.now())] = data;
+
+    localStorage.setItem("userInfo", JSON.stringify(userData));
   }
 
   startup();

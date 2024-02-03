@@ -52,5 +52,5 @@ export let data = {
       },
     },
   ],
-  diary: [],
+  diary: {},
 };
