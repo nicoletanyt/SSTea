@@ -1,6 +1,7 @@
-const main = document.getElementById("main");
-let imgData = JSON.parse(localStorage.getItem("imgData"));
+const main = document.getElementById("img-wrapper");
+let imgData = JSON.parse(localStorage.getItem("userInfo"))["diary"];
 console.log(imgData);
+// date: img
 
 for (let i = 0; i < Object.keys(imgData).length; ++i) {
   const wrapper = document.createElement("div");

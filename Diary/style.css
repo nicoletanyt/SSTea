@@ -1,26 +1,29 @@
 #main {
-  display: grid;
-  flex-direction: column;
-  align-items: center;
-  grid-template-columns: repeat(2, 47.5%);
-  height: 85%;
-  margin: 5%;
   background: url(../Assets/Gallery/Background.png);
   background-size: contain;
   background-repeat: no-repeat;
   background-size: 85vw 70vh;
-  overflow-y: scroll;
+  margin: 5%;
   padding: 4%;
-  column-gap: 4%;
+  overflow-y: hidden;
+  height: 90%;
 }
-#main div {
+#img-wrapper {
+  display: grid;
+  justify-content: center;
+  grid-template-columns: repeat(2, 47.5%);
+  overflow-y: scroll;
+  height: 85%;
+}
+#img-wrapper div {
   background-color: #f0f6ed;
   border: 2px solid #895b3a;
   border-radius: 13px;
   text-align: center;
   align-self: flex-start;
-  height: 70%;
+  padding: 5%;
+  margin: 2%;
 }
-#main div img {
+#img-wrapper div img {
   width: 80%;
 }
