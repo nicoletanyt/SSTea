@@ -20,6 +20,15 @@ function takePlant() {
   const canvas = document.getElementById("output");
   const startButton = document.getElementById("start-button");
 
+  function startFunction(ev) {
+    takepicture();
+    startButton.textContent = "Waiting...";
+    ev.preventDefault();
+    imageRecognition();
+  }
+
+  let handler = (ev) => startFunction(ev);
+
   function showViewLiveResultButton() {
     if (window.self !== window.top) {
       document.querySelector(".contentarea").remove();
@@ -68,19 +77,7 @@ function takePlant() {
       false
     );
 
-    function startFunction(ev) {
-      takepicture();
-      startButton.textContent = "Waiting...";
-      ev.preventDefault();
-      imageRecognition();
-      startButton.removeEventListener(
-        "click",
-        (ev) => startFunction(ev),
-        false
-      );
-    }
-
-    startButton.addEventListener("click", (ev) => startFunction(ev), false);
+    startButton.addEventListener("click", handler, false);
 
     clearphoto();
   }
@@ -121,6 +118,9 @@ function takePlant() {
               const data = canvas.toDataURL("image/png");
               saveToDiary(data);
               alert("Mission Completed! The image is saved to your diary.");
+
+              startButton.removeEventListener("click", handler, false);
+
               popup.classList.add("hidden");
               main.classList.remove("overlay");
 
@@ -135,6 +135,7 @@ function takePlant() {
         if (!isPlant) {
           alert("Plant not detected. Please retake.");
           startButton.textContent = "Snap";
+          startButton.removeEventListener("click", handler, false);
         }
         closeButton.classList.remove("hidden");
       });
