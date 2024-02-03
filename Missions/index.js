@@ -11,7 +11,7 @@ const missionList = {
 let userData = JSON.parse(localStorage.getItem("userInfo"));
 
 function takePlant() {
-  const width = 180; // scale photo to this
+  const width = 250; // scale photo to this
   let height = 0; // computed
 
   let streaming = false;
@@ -68,16 +68,19 @@ function takePlant() {
       false
     );
 
-    startButton.addEventListener(
-      "click",
-      (ev) => {
-        takepicture();
-        startButton.textContent = "Waiting...";
-        ev.preventDefault();
-        imageRecognition();
-      },
-      false
-    );
+    function startFunction(ev) {
+      takepicture();
+      startButton.textContent = "Waiting...";
+      ev.preventDefault();
+      imageRecognition();
+      startButton.removeEventListener(
+        "click",
+        (ev) => startFunction(ev),
+        false
+      );
+    }
+
+    startButton.addEventListener("click", (ev) => startFunction(ev), false);
 
     clearphoto();
   }
