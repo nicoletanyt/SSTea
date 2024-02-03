@@ -117,7 +117,6 @@ function takePlant() {
 
               const data = canvas.toDataURL("image/png");
               saveToDiary(data);
-              alert("Mission Completed! The image is saved to your diary.");
 
               startButton.removeEventListener("click", handler, false);
 
@@ -130,17 +129,17 @@ function takePlant() {
 
               console.log(userData);
               listMissions();
+              alert("Mission Completed! The image is saved to your diary.");
               return;
             }
           }
         }
         if (!isPlant) {
-          alert("Plant not detected. Please retake.");
           startButton.textContent = "Snap";
           startButton.removeEventListener("click", handler, false);
+          startup();
+          alert("Plant not detected. Please retake.");
         }
-        closeButton.classList.remove("hidden");
-        startButton.addEventListener("click", handler, false);
       });
     });
   }
