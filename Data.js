@@ -11,6 +11,7 @@ export let data = {
       name: "Bokchoy",
       image: "../Assets/Gallery/bokchoy.png",
       locked: false,
+      draw: true,
       stats: {
         HP: 200,
         ATK: 20,
@@ -22,6 +23,7 @@ export let data = {
       name: "Sunflower",
       image: "../Assets/Gallery/sunflower.png",
       locked: false,
+      draw: true,
       stats: {
         HP: 200,
         ATK: 20,
@@ -33,6 +35,7 @@ export let data = {
       name: "Tulip",
       image: "../Assets/Gallery/tulip.png",
       locked: false,
+      draw: true,
       stats: {
         HP: 200,
         ATK: 20,
@@ -43,7 +46,8 @@ export let data = {
     {
       name: "Tulip",
       image: "",
-      locked: true,
+      locked: false,
+      draw: false,
       stats: {
         HP: 200,
         ATK: 20,

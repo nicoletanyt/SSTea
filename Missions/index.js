@@ -100,8 +100,9 @@ function takePlant() {
   }
 
   function imageRecognition() {
+    console.log("Image Recognition");
     let isPlant = false;
-    const possible = ["vase", "flowerpot", "pot"];
+    const possible = ["vase", "flowerpot"];
     closeButton.classList.add("hidden");
     mobilenet.load().then((model) => {
       // Classify the image.
@@ -140,6 +141,7 @@ function takePlant() {
           startup();
           alert("Plant not detected. Please retake.");
         }
+        closeButton.classList.remove("hidden");
       });
     });
   }

@@ -1,7 +1,8 @@
 // import { data } from "../Data.js";
-let data = JSON.parse(localStorage.getItem("userInfo"));
+let data = JSON.parse(window.localStorage.getItem("userInfo"));
 
 let userData = data;
+let selectedColour = "#000000";
 console.log(userData);
 
 const createPlantDisplay = (plant) => {
@@ -12,11 +13,61 @@ const createPlantDisplay = (plant) => {
   if (plant.locked) {
     icon.src = "../Assets/Gallery/Lock.png";
   } else {
-    icon.src = plant.image;
+    if (plant.draw) {
+      icon.src = plant.image;
+    } else {
+      icon.src = "../Assets/Gallery/unlock.png"; // set unlocked img
+    }
   }
   displayWrapper.appendChild(icon);
   return displayWrapper;
 };
+
+function displayDraw(i) {
+  const drawWrapper = document.getElementById("draw-avatar");
+  drawWrapper.classList.remove("hidden");
+  const grid = document.getElementById("grid");
+  const colourPicker = document.getElementById("colour-picker");
+  const displayColour = document.getElementById("color-text");
+  const doneBtn = document.getElementById("done-btn");
+  displayColour.textContent = selectedColour;
+  // create a 15 by 15 grid for drawing
+  for (let i = 0; i < 14; ++i) {
+    for (let j = 0; j < 14; ++j) {
+      let square = document.createElement("div");
+      square.classList.add("square");
+      grid.appendChild(square);
+    }
+  }
+  const squares = document.querySelectorAll(".square");
+  for (let i = 0; i < squares.length; ++i) {
+    squares[i].addEventListener("click", () => {
+      console.log(selectedColour);
+      squares[i].style.backgroundColor = selectedColour;
+      // squares[i].style.backgroundColor = "#000000";
+    });
+  }
+  function changeColour(event) {
+    selectedColour = event.target.value;
+    displayColour.textContent = selectedColour;
+  }
+  doneBtn.addEventListener("click", () => {
+    html2canvas(grid).then((canvas) => {
+      document.body.appendChild(canvas);
+      let data = canvas.toDataURL("image/png");
+      data.replace(/^data:image\/(png|jpg);base64,/, "");
+      userData["plants"][i]["image"] = data;
+      userData["plants"][i]["draw"] = true;
+      saveToLS();
+      alert("Saved.");
+      // updates the image
+      document.getElementById("gallery-wrapper").childNodes[i].firstChild.src =
+        data;
+      drawWrapper.classList.add("hidden");
+    });
+  });
+  colourPicker.addEventListener("change", changeColour);
+}
 
 function displayGallery() {
   console.log("Display Gallery");
@@ -27,8 +78,12 @@ function displayGallery() {
 
     if (!userData["plants"][i].locked) {
       plantDiv.addEventListener("click", () => {
-        window.localStorage.setItem("plantIndex", i);
-        window.location.pathname = "/Plants/plantDetail.html"; // if github doesn't work, add /SSTea
+        if (!userData["plants"][i].draw) {
+          displayDraw(i);
+        } else {
+          window.localStorage.setItem("plantIndex", i);
+          window.location.pathname = "/Plants/plantDetail.html"; // if github doesn't work, add /SSTea
+        }
       });
     }
   }
@@ -67,7 +122,8 @@ function displayDetails() {
 }
 
 function saveToLS() {
-  localStorage.setItem("userInfo", JSON.stringify(userData));
+  window.localStorage.setItem("userInfo", JSON.stringify(userData));
+  console.log("finished saving");
 }
 
 const displayLevelUp = (upgradeStat, plant) => {
