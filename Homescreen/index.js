@@ -3,12 +3,10 @@ let userData;
 
 if (localStorage.getItem("userInfo") == undefined) {
   userData = data; // set starting data
+  localStorage.setItem("userInfo", JSON.stringify(userData));
 } else {
   userData = JSON.parse(localStorage.getItem("userInfo"));
 }
-
-// store to local storage
-localStorage.setItem("userInfo", JSON.stringify(data));
 
 // load values
 const sun = document.querySelector(".sunpower");

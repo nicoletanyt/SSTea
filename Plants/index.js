@@ -122,7 +122,8 @@ function displayDetails() {
 }
 
 function saveToLS() {
-  window.localStorage.setItem("userInfo", JSON.stringify(userData));
+  console.log(userData);
+  localStorage.setItem("userInfo", JSON.stringify(userData));
   console.log("finished saving");
 }
 
@@ -178,8 +179,8 @@ const displayLevelUp = (upgradeStat, plant) => {
 };
 
 // if github doesnt work, add ""
-if (window.location.pathname == "/SSTea/Plants/") {
+if (window.location.pathname.includes("/Plants/")) {
   displayGallery();
-} else if (window.location.pathname == "/SSTea/Plants/plantDetail.html") {
+} else if (window.location.pathname.includes("/Plants/plantDetail.html")) {
   displayDetails();
 }
