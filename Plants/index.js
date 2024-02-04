@@ -177,9 +177,9 @@ const displayLevelUp = (upgradeStat, plant) => {
   levelUpBtn.addEventListener("click", upgrade);
 };
 
-// if github doesnt work, add "/SSTea"
-if (window.location.pathname == "/Plants/") {
+// if github doesnt work, add ""
+if (window.location.pathname == "/SSTea/Plants/") {
   displayGallery();
-} else if (window.location.pathname == "/Plants/plantDetail.html") {
+} else if (window.location.pathname == "/SSTea/Plants/plantDetail.html") {
   displayDetails();
 }
