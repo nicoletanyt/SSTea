@@ -20,13 +20,26 @@
   background-size: 24vw 14svh;
 }
 #main {
+  position: relative;
   display: flex;
   justify-content: center;
   height: 70%;
 }
 #pic {
   align-self: flex-end;
-  height: 100%;
+  height: 85%;
+}
+#spin-btn {
+  position: absolute;
+  right: 0;
+  top: 0;
+  padding: 3%;
+  margin: 3%;
+  background-color: #ece1bb;
+  border: 2px solid #544a43;
+  border-radius: 10px;
+  text-decoration: none;
+  color: #544a43;
 }
 .currency-display {
   display: flex;
@@ -58,4 +71,53 @@
   justify-content: space-around;
   position: absolute;
   bottom: 5%;
+}
+
+#circle {
+  width: 90vw;
+  height: 90vw;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: 5s;
+}
+#spin-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: inherit;
+  flex-direction: column;
+}
+.number {
+  position: absolute;
+  width: 65vw;
+  height: 65vw;
+  border-radius: 50%;
+  transform-origin: center;
+  clip-path: polygon(100% 0, 50% 50%, 0 0);
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  padding: 15%;
+}
+#dot {
+  width: 18vw;
+  height: 18vw;
+  background-color: #ece1bb;
+  position: absolute;
+  z-index: 2;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 5px solid #544a43;
+}
+#line {
+  height: 5vh;
+  width: 1.5vw;
+  background-color: #544a43;
+  position: relative;
+  top: 3vh;
+  z-index: 2;
 }
