@@ -22,7 +22,7 @@ let userData = JSON.parse(localStorage.getItem("userInfo"));
 
 function loadPlants() {
   for (let i = 0; i < userData["plants"].length; ++i) {
-    if (!userData["plants"][i].locked) {
+    if (!userData["plants"][i].locked && userData["plants"][i].draw) {
       let img = document.createElement("img");
       img.src = userData["plants"][i]["image"];
       img.draggable = true;
@@ -131,6 +131,20 @@ for (let i = 0; i < charGrids.length; i++) {
 
     charGrids[i].addEventListener("dragover", (ev) => {
       dragover(ev);
+    });
+    image.addEventListener("click", () => {
+      // get stat details
+      console.log("!");
+      let details = charGrids[i].parentNode;
+      console.log(details);
+      for (
+        let j = 0;
+        j < Object.keys(userData["plants"][i].stats).length;
+        ++j
+      ) {
+        details.textContent += Object.keys(userData["plants"][i].stats)[j];
+      }
+      console.log();
     });
   }
 }

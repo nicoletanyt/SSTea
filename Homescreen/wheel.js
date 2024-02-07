@@ -52,7 +52,7 @@ function showQuestion() {
       alert("Correct! You get 3 leaf points.");
       //   leaf.textContent = parseInt(leaf.textContent) + 3;
       userData["currency"]["leaf"] += 3;
-      localStorage.setItem("userInfo", userData);
+      localStorage.setItem("userInfo", JSON.stringify(userData));
     } else {
       alert("Wrong.");
     }
