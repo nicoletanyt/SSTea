@@ -36,7 +36,57 @@
     </div>
     <div id="main">
         <img id="pic" src="./Assets/Homepage/bokchoy.png" />
-        <a id="spin-btn" href="./Homescreen/wheel.html">Spin</a>
+        <div id="spin-btn">
+            <img src="./Assets/Homepage/Quiz.png" />
+        </div>
+    </div>
+    <div id="quizPopup" class="hide">
+        <div class="heading">
+            <h2>Quiz</h2>
+            <img src="./Assets/Homepage/question-mark.png" />
+        </div>
+        <h2>Choose your reward!</h2>
+        <div id="spin-wrapper">
+            <div id="line"></div>
+            <div id="circle">
+                <div id="dot">
+                    <h3>Spin</h3>
+                </div>
+                <div>
+                    <div class="quadrant top-left">
+                        <img src="./Assets/Homepage/glucose.png" />
+                        <p>x3</p>
+                    </div>
+                    <div class="quadrant bottom-left">
+                        <img src="./Assets/Homepage/leaf.png" />
+                        <p>x3</p>
+                    </div>
+                </div>
+                <div>
+                    <div class="quadrant top-right">
+                        <img src="./Assets/Homepage/sun.png" />
+                        <p>x3</p>
+                    </div>
+                    <div class="quadrant bottom-right">
+                        <img src="./Assets/Homepage/oxygen.png" />
+                        <p>x3</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div id="popup" class="hide">
+        <div id="heading">
+            <h2>Quiz</h2>
+            <div class="close-btn">
+                <i class="fa-solid fa-close"></i>
+            </div>
+        </div>
+        <h3 class="question">Growing Tip: Why do some plants need support, like stakes or cages?</h3>
+        <p class="option"> a) To provide additional warmth during colder weather </p>
+        <p class="option"> b) To give them stability and prevent bending or breaking </p>
+        <p class="option"> c) To help them grow sideways and explore more space </p>
+        <p class="option"> d) To protect them from too much sunlight </p>
     </div>
     <nav id="nav-wrapper">
         <a class="nav-btn" href="./Plants/">
@@ -53,6 +103,7 @@
         </a>
     </nav>
     <script type="module" src="./Homescreen/index.js"></script>
+    <script src="./Homescreen/wheel.js"></script>
 </body>
 
 </html>

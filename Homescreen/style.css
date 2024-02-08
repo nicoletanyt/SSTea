@@ -1,3 +1,7 @@
+body {
+  position: relative;
+  overflow: hidden;
+}
 #topbar {
   display: flex;
   justify-content: flex-end;
@@ -33,13 +37,15 @@
   position: absolute;
   right: 0;
   top: 0;
-  padding: 3%;
   margin: 3%;
-  background-color: #ece1bb;
-  border: 2px solid #544a43;
   border-radius: 10px;
   text-decoration: none;
   color: #544a43;
+  width: 20%;
+  height: 20%;
+}
+#spin-btn img {
+  width: 100%;
 }
 .currency-display {
   display: flex;
@@ -74,8 +80,6 @@
 }
 
 #circle {
-  width: 90vw;
-  height: 90vw;
   border-radius: 50%;
   display: flex;
   justify-content: center;
@@ -86,21 +90,44 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: inherit;
+  height: 70%;
+  width: 60%;
   flex-direction: column;
 }
-.number {
-  position: absolute;
-  width: 65vw;
-  height: 65vw;
-  border-radius: 50%;
-  transform-origin: center;
-  clip-path: polygon(100% 0, 50% 50%, 0 0);
+.quadrant {
+  width: 35vw;
+  height: 35vw;
+  border-style: solid;
+  border-color: #895b3a;
+  background-color: #f0f6ed;
   display: flex;
   justify-content: center;
   text-align: center;
-  padding: 15%;
+  align-items: center;
 }
+.quadrant img {
+  width: 40%;
+}
+.top-left {
+  border-top-left-radius: 100%;
+  border-width: 4px 2px 2px 4px;
+}
+
+.top-right {
+  border-top-right-radius: 100%;
+  border-width: 4px 4px 2px 2px;
+}
+
+.bottom-left {
+  border-bottom-left-radius: 100%;
+  border-width: 2px 2px 4px 4px;
+}
+
+.bottom-right {
+  border-bottom-right-radius: 100%;
+  border-width: 2px 4px 4px 2px;
+}
+
 #dot {
   width: 18vw;
   height: 18vw;
@@ -164,4 +191,26 @@
   padding: 5%;
   margin-bottom: 5%;
   margin-top: 0;
+}
+
+#quizPopup {
+  position: absolute;
+  top: 10%;
+  left: 10%;
+  width: 80%;
+  height: 80%;
+  background-image: url("../Assets/Gallery/Background.png");
+  background-size: 80vw 80vh;
+  background-repeat: no-repeat;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#quizPopup .heading {
+  display: flex;
+  justify-content: center;
+}
+.heading img {
+  width: 20%;
 }

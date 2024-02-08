@@ -1,26 +1,23 @@
+const spinBtn = document.getElementById("spin-btn");
+const quizPopup = document.getElementById("quizPopup");
+
 const circle = document.getElementById("circle");
 const dot = document.getElementById("dot");
 const sections = 4;
 const deg = parseInt(360 / sections);
-const rewards = ["Quiz", "20 Leaf Points", "Quiz", "10 Glucose"];
-const colours = ["#f404b6", "white", "blue", "yellow"];
+const rewards = ["10 Glucose", "5 Leaf Points", "10 Oxygen", "10 Sunpower"];
 let number = Math.ceil(Math.random() * 1000);
 
-for (let i = 0; i < sections; ++i) {
-  let part = document.createElement("div");
-  part.classList.add("number");
-  part.style.transform = "rotate(" + (i * deg).toString() + "deg)";
-  part.style.backgroundColor = colours[i];
-  part.textContent = rewards[i];
-  circle.appendChild(part);
-}
+spinBtn.addEventListener("click", () => {
+  quizPopup.classList.remove("hide");
+});
 
 circle.addEventListener("click", () => {
   console.log(number);
   circle.style.transform = "rotate(" + number + "deg)";
-  number += Math.ceil(Math.random() * 1000);
+  // number += Math.ceil(Math.random() * 1000);
   // show alert after its done spinning. duration should be == transition
-  let index = parseInt(((number - deg) % 360) / deg) - 1;
+  let index = parseInt((number % 360) / deg);
   if (index < 0) index = 0;
   setTimeout(() => {
     alert("You won " + rewards[index] + "!");
@@ -34,7 +31,6 @@ circle.addEventListener("click", () => {
 });
 
 function showQuestion() {
-  const main = document.getElementById("spin-wrapper");
   const popup = document.getElementById("popup");
   const options = document.querySelectorAll(".option");
   const closeBtn = document.querySelector(".close-btn");
@@ -42,7 +38,7 @@ function showQuestion() {
   let selected = false;
 
   // Open Quiz Popup
-  main.classList.add("hide");
+  quizPopup.classList.add("hide");
   popup.classList.remove("hide");
   popup.classList.add("show");
 
