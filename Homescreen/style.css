@@ -143,24 +143,14 @@ body {
 #line {
   height: 5vh;
   width: 1.5vw;
-  background-color: #544a43;
+  background-color: #9c8b7f;
   position: relative;
   top: 3vh;
   z-index: 2;
 }
 
 #popup {
-  position: absolute;
-  top: 18%;
-  left: 7%;
-  width: 82%;
-  height: 80%;
-  border-radius: 30px;
-  border: 3px solid #895b3a;
-  background: #ece1bb;
-  display: flex;
-  align-items: center;
-  flex-direction: column;
+  z-index: 2;
 }
 .hide {
   visibility: hidden;
@@ -169,9 +159,10 @@ body {
 .show {
   pointer-events: all;
 }
-#heading {
+.heading {
   display: flex;
-  align-items: center;
+  justify-content: center;
+  padding: 4%;
 }
 .close-btn {
   font-size: 1.7em;
@@ -193,24 +184,27 @@ body {
   margin-top: 0;
 }
 
-#quizPopup {
+.popup {
   position: absolute;
-  top: 10%;
-  left: 10%;
-  width: 80%;
-  height: 80%;
-  background-image: url("../Assets/Gallery/Background.png");
-  background-size: 80vw 80vh;
-  background-repeat: no-repeat;
-  z-index: 2;
+  top: 2%;
+  left: 8%;
+  width: 83%;
+  height: 95%;
+  border-radius: 30px;
   display: flex;
-  flex-direction: column;
   align-items: center;
+  flex-direction: column;
+  background-image: url("../Assets/Gallery/Background.png");
+  background-size: cover;
+  background-repeat: no-repeat;
 }
-#quizPopup .heading {
-  display: flex;
-  justify-content: center;
+#quizPopup {
+  z-index: 3;
 }
 .heading img {
   width: 20%;
+}
+.title {
+  display: flex;
+  justify-content: center;
 }

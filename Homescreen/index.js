@@ -9,8 +9,12 @@ if (localStorage.getItem("userInfo") == undefined) {
 }
 
 // load values
-const sun = document.querySelector(".sunpower");
-const leaf = document.querySelector(".leaf");
+export function loadValues() {
+  console.log("Loading values");
+  const sun = document.querySelector(".sunpower");
+  const leaf = document.querySelector(".leaf");
 
-sun.textContent = userData["currency"]["sunpower"].toString() + "/30";
-leaf.textContent = userData["currency"]["leaf"].toString();
+  sun.textContent = userData["currency"]["sunpower"].toString() + "/30";
+  leaf.textContent = userData["currency"]["leaf"].toString();
+}
+loadValues();

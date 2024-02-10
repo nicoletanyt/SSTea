@@ -1,3 +1,5 @@
+import { loadValues } from "./index.js";
+
 const spinBtn = document.getElementById("spin-btn");
 const quizPopup = document.getElementById("quizPopup");
 
@@ -5,7 +7,7 @@ const circle = document.getElementById("circle");
 const dot = document.getElementById("dot");
 const sections = 4;
 const deg = parseInt(360 / sections);
-const rewards = ["10 Glucose", "5 Leaf Points", "10 Oxygen", "10 Sunpower"];
+const rewards = ["10 Glucose", "10 Leaf Points", "10 Oxygen", "10 Sunpower"];
 let number = Math.ceil(Math.random() * 1000);
 
 spinBtn.addEventListener("click", () => {
@@ -19,18 +21,17 @@ circle.addEventListener("click", () => {
   // show alert after its done spinning. duration should be == transition
   let index = parseInt((number % 360) / deg);
   if (index < 0) index = 0;
+  let prize = rewards[index];
   setTimeout(() => {
-    alert("You won " + rewards[index] + "!");
-    if (rewards[index] == "Quiz") {
-      console.log("quiz!");
-      showQuestion();
-    }
-    // circle.style.transition = "0s";
-    // circle.style.transform = "none";
+    quizPopup.classList.add("hide");
+    alert(
+      "You won " + prize + "! Answer a question correctly to get the prize!"
+    );
+    showQuestion(prize);
   }, 5000);
 });
 
-function showQuestion() {
+function showQuestion(prize) {
   const popup = document.getElementById("popup");
   const options = document.querySelectorAll(".option");
   const closeBtn = document.querySelector(".close-btn");
@@ -45,9 +46,9 @@ function showQuestion() {
   function selectOption(i) {
     if (i == 1) {
       // The second option is the correct one. If expanding more questions, use a dictionary instead.
-      alert("Correct! You get 3 leaf points.");
-      //   leaf.textContent = parseInt(leaf.textContent) + 3;
-      userData["currency"]["leaf"] += 3;
+      alert("Correct!");
+      let parts = prize.split(/[ ]+/);
+      userData["currency"][parts[1].toLowerCase()] += parseInt(parts[0]);
       localStorage.setItem("userInfo", JSON.stringify(userData));
     } else {
       alert("Wrong.");
@@ -69,6 +70,7 @@ function showQuestion() {
   }
 
   closeBtn.addEventListener("click", () => {
+    loadValues();
     main.classList.remove("hide");
     main.classList.add("show");
     popup.classList.add("hide");
