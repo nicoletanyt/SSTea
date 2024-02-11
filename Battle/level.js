@@ -1,9 +1,4 @@
-const selectGrid = document
-  .querySelector(".right-wrapper")
-  .querySelector(".game");
-const game = document.getElementById("middle-wrapper").querySelector(".game");
-const selectWrapper = document.querySelector(".game-wrapper");
-const gameWrapper = document.querySelector(".game-wrapper-actual");
+const game = document.getElementById("game");
 const charSquares = document.querySelectorAll(".char-square");
 const rows = 9;
 const cols = 4;
@@ -17,7 +12,7 @@ const enemyFrames = [
   "../Assets/Battle/thunder5.png",
 ];
 let enemyCurr = 0;
-let totalChar = 0;
+// let totalChar = 0;
 let userData = JSON.parse(localStorage.getItem("userInfo"));
 
 function loadPlants() {
@@ -26,9 +21,9 @@ function loadPlants() {
       let img = document.createElement("img");
       img.src = userData["plants"][i]["image"];
       img.draggable = true;
-      img.id = "char-" + (totalChar + 1).toString();
-      charSquares[totalChar].appendChild(img);
-      totalChar += 1;
+      img.id = i.toString();
+      charSquares[i].appendChild(img);
+      // totalChar += 1;
     }
   }
 }
@@ -42,7 +37,7 @@ function createGrid() {
         ev.preventDefault();
         if (
           !ev.target.classList.contains("locked") &&
-          !ev.target.classList.contains("enemy") &&
+          !ev.target.classList.contains("enemy-curr") &&
           !ev.target.classList.contains("house")
         ) {
           var data = ev.dataTransfer.getData("text");
@@ -55,7 +50,7 @@ function createGrid() {
       grid.addEventListener("dragover", (ev) => {
         dragover(ev);
       });
-      selectGrid.appendChild(grid);
+      game.appendChild(grid);
     }
   }
 }
@@ -66,10 +61,15 @@ const grids = document.querySelectorAll(".square");
 const charGrids = document.querySelectorAll(".char-square");
 
 function createEnemy(index, grid) {
+  let charWrapper = document.createElement("div");
+
   const enemy = document.createElement("img");
   enemy.src = "../Assets/Battle/thunder.png";
-  grid[enemiesPath[index]].classList.add("enemy-curr");
-  grid[enemiesPath[index]].appendChild(enemy);
+  charWrapper.appendChild(enemy);
+  charWrapper.classList.add("enemy-curr");
+
+  // grid[enemiesPath[index]].classList.add("enemy-curr");
+  grid[enemiesPath[index]].appendChild(charWrapper);
 }
 
 function createEntities(grid) {
@@ -144,99 +144,143 @@ for (let i = 0; i < charGrids.length; i++) {
       ) {
         details.textContent += Object.keys(userData["plants"][i].stats)[j];
       }
-      console.log();
     });
-  }
-}
-
-function createGameGrid() {
-  for (let i = 0; i < cols; i++) {
-    for (let j = 0; j < rows; j++) {
-      let grid = document.createElement("div");
-      grid.classList.add("game-square");
-      game.appendChild(grid);
-    }
   }
 }
 
 const startBtn = document.querySelector("#start-btn");
 
 startBtn.addEventListener("click", () => {
-  selectWrapper.classList.add("hidden");
-  gameWrapper.classList.remove("hidden");
-  gameWrapper.classList.add("show");
   startGame();
 });
 
 function startGame() {
-  createGameGrid();
-  const squares = document.querySelectorAll(".game-square");
-  const enemyH = document.getElementById("enemy-health").querySelector(".val");
-  const homeH = document.getElementById("home-health").querySelector(".val");
-  let enemyHealth = 100;
+  class Tower {
+    constructor(health, pos, obj) {
+      this.health = health;
+      this.pos = pos;
+      this.obj = obj;
+    }
+
+    attack() {
+      // TODO: CHANGE THIS FUNCTION BASED ON STATS USING OBJ.STATS
+      if (this.health > 0) {
+        enemy.health -= 5;
+      }
+    }
+  }
+
+  class Enemy {
+    constructor(health, pos, attackFrames = 0, isAttacking) {
+      this.health = health;
+      this.pos = pos; // pos is the index of enemiesPath
+      this.attackFrames = attackFrames;
+      this.isAttacking = isAttacking;
+    }
+
+    attack(player) {
+      // attack if player on path or home
+      this.isAttacking = true;
+      player.health -= 10;
+
+      let img = squares[enemiesPath[this.pos]].children[0].children[0];
+
+      img.src = enemyFrames[this.attackFrames];
+      if (this.attackFrames < enemyFrames.length - 1) {
+        this.attackFrames += 1;
+      } else {
+        this.attackFrames = 0; // restart the cycle
+      }
+    }
+
+    move() {
+      charWrapper.children[0].src = "../Assets/Battle/thunder.png";
+
+      this.pos += 1;
+      squares[enemiesPath[this.pos]].appendChild(charWrapper);
+    }
+  }
+
+  const squares = document.querySelectorAll(".square");
+  let players = [];
+  let enemy = new Enemy(100, 0);
   let homeHealth = 100;
 
   // Add player's plants
   for (let key in charPos) {
-    squares[charPos[key]].appendChild(document.getElementById(key));
+    let charWrapper = document.createElement("div");
+    let healthBar = document.createElement("div");
+    let val = document.createElement("div");
+    let img = document.getElementById(key);
+    val.classList.add("val");
+    healthBar.classList.add("health-bar");
+    healthBar.appendChild(val);
+
+    charWrapper.appendChild(img);
+    charWrapper.appendChild(healthBar);
+
+    squares[charPos[key]].appendChild(charWrapper);
+    let plant = new Tower(
+      100,
+      charPos[key],
+      userData["plants"][parseInt(img.id)]
+    );
+    players.push(plant);
   }
 
-  createEntities(squares);
-  enemyH.style.height = enemyHealth.toString() + "%";
-  homeH.style.height = homeHealth.toString() + "%";
+  // Add enemy's health bar
+  let charWrapper = document.querySelector(".enemy-curr");
+  let healthBar = document.createElement("div");
+  let val = document.createElement("div");
+  val.classList.add("val");
+  healthBar.classList.add("health-bar");
+  healthBar.appendChild(val);
+  charWrapper.appendChild(healthBar);
 
-  let enemyMovement = setInterval(moveEnemy, 2000); // repeat this function every x ms
-  function moveEnemy() {
-    squares[enemiesPath[enemyCurr]].classList.remove("enemy-curr");
-    squares[enemiesPath[enemyCurr]].removeChild(
-      squares[enemiesPath[enemyCurr]].lastChild
-    ); // removes the image
-    enemyCurr += 1;
-    createEnemy(enemyCurr, squares);
+  let enemyMovement = setInterval(game, 2000); // repeat this function every x ms
 
-    function shootEnemy() {
-      // minus health from enemy
-      // modify according to plant stats
-      enemyHealth -= 10;
-      enemyH.style.height = enemyHealth.toString() + "%";
-
-      if (enemyHealth <= 0) {
-        // end game and return to homepage
-        endGame();
-        // window.location.pathname = "/SSTea/";
-        window.location.pathname = "../";
+  function game() {
+    console.log(enemy.health);
+    if (homeHealth <= 0 || enemy.health <= 0) {
+      // game over & return to homepage
+      clearInterval(enemyMovement);
+      if (homeHealth <= 0) alert("Failed.");
+      else alert("Level Cleared!");
+      // window.location.pathname = "/SSTea/";
+      window.location.pathname = "../";
+    }
+    if (enemy.pos != enemiesPath.length - 2 && !enemy.isAttacking) {
+      enemy.move();
+    } else {
+      if (enemy.pos == enemiesPath.length - 2 && enemy.isAttacking) {
+        homeHealth -= 10;
+        console.log("Home Health: " + homeHealth);
       }
     }
 
-    function endGame() {
-      clearInterval(enemyMovement);
-      alert("Level cleared!");
-    }
-
-    if (Object.keys(charPos).length != 0) shootEnemy();
-
-    if (enemyCurr == enemiesPath.length - 2) {
-      clearInterval(enemyMovement);
-
-      let enemyAttack = setInterval(attack, 2000);
-      let attackFrames = 0;
-      let img = squares[enemiesPath[enemyCurr]].children[0];
-
-      function attack() {
-        homeHealth -= 10;
-        homeH.style.height = homeHealth.toString() + "%"; // attack
-
-        if (Object.keys(charPos).length != 0) shootEnemy();
-
-        if (homeHealth == 0) {
-          clearInterval(enemyAttack);
-          alert("Failed.");
-        }
-
-        img.src = enemyFrames[attackFrames];
-        if (attackFrames < enemyFrames.length - 1) {
-          attackFrames += 1;
-        }
+    for (let i = 0; i < players.length; ++i) {
+      players[i].attack();
+      if (players[i].pos == enemiesPath[enemy.pos + 1]) {
+        // enemy to attack this player
+        console.log(players[i].health);
+        enemy.attack(players[i]);
+        // update health bars
+        squares[
+          players[i].pos
+        ].childNodes[0].childNodes[1].childNodes[0].style.height =
+          players[i].health.toString() + "%";
+      }
+      squares[
+        enemiesPath[enemy.pos]
+      ].childNodes[0].childNodes[1].childNodes[0].style.height =
+        enemy.health.toString() + "%";
+      if (players[i].health <= 0) {
+        // dead
+        squares[players[i].pos].removeChild(squares[players[i].pos].firstChild);
+        console.log("dead");
+        enemy.isAttacking = false;
+        players.splice(i, 1);
+        // TODO: UPDATE UI OF DEAD CHARACTERS
       }
     }
   }

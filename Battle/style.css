@@ -1,8 +1,12 @@
+body {
+  display: flex;
+  flex-direction: column;
+}
 #main {
   background: url(../Assets/Gallery/Background.png);
   background-size: contain;
   background-repeat: no-repeat;
-  background-size: 85vw 69vh;
+  background-size: 85vw 80vh;
   height: 80%;
   margin: 5%;
   display: flex;
@@ -58,8 +62,9 @@
   top: 15%;
   left: 7%;
   width: 82%;
-  height: 75%;
-  border-radius: 30px;
+  height: 80%;
+  border-top-left-radius: 30px;
+  border-top-right-radius: 30px;
   border: 3px solid #895b3a;
   background: #ece1bb;
   display: flex;
@@ -94,24 +99,26 @@
 }
 
 /* FOR GAME */
-.game-wrapper {
-  position: absolute;
-  top: 18%;
+#game-wrapper {
   background-color: #ece1bb;
-  border-radius: 38px;
+  border-radius: 30px;
   border: 3px solid #895b3a;
-  height: 80%;
   width: 90%;
+  height: 80%;
   display: flex;
+
+  justify-self: center;
+  align-self: center;
+  padding: 2%;
 }
 #character-wrapper {
-  margin: 5%;
   display: grid;
   flex-direction: column;
   grid-template-rows: repeat(7, 18%);
-  row-gap: 2%;
   overflow-y: scroll;
-  width: 50%;
+  width: 30%;
+  margin: 4%;
+  margin-right: 0;
 }
 .char-square {
   background-image: url("../Assets/Homepage/Border.png");
@@ -119,39 +126,28 @@
   background-repeat: no-repeat;
   display: flex;
   justify-content: center;
-  width: 70%;
 }
 .char-wrapper {
-  width: 70%;
+  width: 100%;
   position: relative;
+  height: fit-content;
 }
 .char-square img {
   width: 70%;
 }
-.stat-display {
-  width: 100vw;
-  z-index: 2;
-  position: absolute;
-  background-color: #544a43;
-  color: #dbe2da;
-  left: 80%;
-  padding: 4%;
-  top: 0;
-}
 .right-wrapper {
-  position: absolute;
   display: flex;
   flex-direction: column;
-  width: 60%;
-  height: 94%;
-  left: 30%;
+  width: 100%;
+  height: 95%;
   margin: 4%;
 }
-.game {
+#game {
+  position: relative;
+  height: 100%;
   display: grid;
   grid-template-columns: repeat(4, 25%);
   grid-template-rows: repeat(9, 11.15%);
-  height: 100%;
   border: 2px solid #895b3a;
 }
 .square,
@@ -184,59 +180,27 @@
 .enemy {
   background-color: #edececcc;
 }
-.enemy-curr {
+/* .enemy-curr {
   background-color: rgba(219, 89, 89, 0.8);
-}
-#enemy-health,
-#home-health {
-  position: relative;
+} */
+.health-bar {
+  background-color: #dbe2da;
+  width: 13%;
   height: 90%;
-  width: 10%;
-  margin: 2%;
-  border-radius: 8px;
-  border: 2px solid #544a43;
-  margin-top: 0;
-  background: #dbe2da;
+  border: 1.5px solid #544a43;
+  border-radius: 10px;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
-}
-.game-wrapper-actual {
-  margin-top: 2%;
-  background-color: #ece1bb;
-  border-radius: 38px;
-  border: 3px solid #895b3a;
-  position: absolute;
-  left: 5%;
-  width: 90%;
-  height: 75%;
-  align-self: center;
-  display: flex;
-  justify-content: center;
-  padding-top: 6%;
-}
-#middle-wrapper {
-  width: inherit;
-  height: 95%;
-  display: flex;
-  flex-direction: column;
-}
-#enemy-health .val {
-  background: #d56666;
-}
-#home-health .val {
-  background: #6bc685;
 }
 .val {
   z-index: 1;
-  height: 30%;
-}
-#end-btn {
-  border-radius: 13px;
-  border: 2px solid #544a43;
-  background: #ec9492;
-  padding: 1%;
-  text-align: center;
-  width: 30%;
+  height: 100%;
+  width: 100%;
+  background-color: #d56666;
+  border-radius: 10px;
   align-self: flex-end;
+}
+.square div {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
