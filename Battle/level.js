@@ -166,12 +166,13 @@ function startGame() {
       // TODO: CHANGE THIS FUNCTION BASED ON STATS USING OBJ.STATS
       if (this.health > 0) {
         enemy.health -= 5;
+        console.log(this.obj.name);
       }
     }
   }
 
   class Enemy {
-    constructor(health, pos, attackFrames = 0, isAttacking) {
+    constructor(health, pos, attackFrames = 0, isAttacking = false) {
       this.health = health;
       this.pos = pos; // pos is the index of enemiesPath
       this.attackFrames = attackFrames;
@@ -202,9 +203,11 @@ function startGame() {
   }
 
   const squares = document.querySelectorAll(".square");
+  const lifeLeft = document.querySelector(".life-left");
+  const enemiesLeft = document.querySelector(".enemies-left");
   let players = [];
   let enemy = new Enemy(100, 0);
-  let homeHealth = 100;
+  let lives = 3;
 
   // Add player's plants
   for (let key in charPos) {
@@ -241,20 +244,25 @@ function startGame() {
 
   function game() {
     console.log(enemy.health);
-    if (homeHealth <= 0 || enemy.health <= 0) {
+    if (lives <= 0 || enemy.health <= 0) {
       // game over & return to homepage
       clearInterval(enemyMovement);
-      if (homeHealth <= 0) alert("Failed.");
-      else alert("Level Cleared!");
+      if (lives <= 0) alert("Failed.");
+      else {
+        enemiesLeft.textContent = "0/1";
+        alert("Level Cleared!");
+      }
       // window.location.pathname = "/SSTea/";
       window.location.pathname = "../";
     }
     if (enemy.pos != enemiesPath.length - 2 && !enemy.isAttacking) {
       enemy.move();
     } else {
-      if (enemy.pos == enemiesPath.length - 2 && enemy.isAttacking) {
-        homeHealth -= 10;
-        console.log("Home Health: " + homeHealth);
+      if (enemy.pos == enemiesPath.length - 2 && lives > 0) {
+        // attacking home base
+        lives -= 1;
+        lifeLeft.textContent = lives.toString() + "/3";
+        console.log("Life Left: " + lives.toString());
       }
     }
 

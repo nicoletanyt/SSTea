@@ -204,3 +204,28 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+.label-wrapper {
+  height: 5%;
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+}
+.label-wrapper div {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.label-wrapper div p {
+  white-space: nowrap;
+  font-size: 0.9em;
+}
+.val-left {
+  background-color: #f0f6ed;
+  border: 2px solid #895b3a;
+  color: #db7573;
+  border-radius: 10px;
+  padding-left: 3%;
+  padding-right: 3%;
+  margin-left: 3%;
+}
