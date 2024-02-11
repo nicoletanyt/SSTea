@@ -163,9 +163,15 @@ function startGame() {
     }
 
     attack() {
-      // TODO: CHANGE THIS FUNCTION BASED ON STATS USING OBJ.STATS
-      if (this.health > 0) {
-        enemy.health -= 5;
+      if (
+        this.health > 0 &&
+        Math.abs((enemiesPath[enemy.pos] % 4) - (this.pos % 4)) <=
+          this.obj["stats"]["Range"] &&
+        Math.abs(
+          Math.floor(enemiesPath[enemy.pos] / 4) - Math.floor(this.pos / 4)
+        ) <= this.obj["stats"]["Range"]
+      ) {
+        enemy.health -= this.obj["stats"]["ATK"];
         console.log(this.obj.name);
       }
     }
@@ -182,7 +188,7 @@ function startGame() {
     attack(player) {
       // attack if player on path or home
       this.isAttacking = true;
-      player.health -= 10;
+      player.health -= 10 / (player.obj["stats"]["HP"] / 100);
 
       let img = squares[enemiesPath[this.pos]].children[0].children[0];
 
