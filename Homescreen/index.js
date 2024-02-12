@@ -20,11 +20,15 @@ const images = [
   "./Assets/Homepage/Tutorial/TUTORIAL-6.png",
   "./Assets/Homepage/Tutorial/TUTORIAL-7.png",
 ];
-
-if (localStorage.getItem("userInfo") == undefined) {
+const currVersion = "1.0";
+if (
+  localStorage.getItem("userInfo") == undefined ||
+  JSON.parse(localStorage.getItem("SSTeaVersion")) != currVersion
+) {
   console.log("Show Tutorial");
   userData = data; // set starting data
   localStorage.setItem("userInfo", JSON.stringify(userData));
+  localStorage.setItem("SSTeaVersion", currVersion);
   // show tutorial
   topbar.classList.add("hide");
   main.classList.add("hide");
