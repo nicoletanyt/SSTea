@@ -15,20 +15,29 @@ spinBtn.addEventListener("click", () => {
 });
 
 circle.addEventListener("click", () => {
-  console.log(number);
-  circle.style.transform = "rotate(" + number + "deg)";
-  // number += Math.ceil(Math.random() * 1000);
-  // show alert after its done spinning. duration should be == transition
-  let index = parseInt((number % 360) / deg);
-  if (index < 0) index = 0;
-  let prize = rewards[index];
-  setTimeout(() => {
-    quizPopup.classList.add("hide");
-    alert(
-      "You won " + prize + "! Answer a question correctly to get the prize!"
-    );
-    showQuestion(prize);
-  }, 5000);
+  let dateNow = new Date();
+  if (
+    localStorage.getItem("lastSpun") == undefined ||
+    JSON.parse(localStorage.getItem("lastSpun")) != dateNow.toDateString()
+  ) {
+    localStorage.setItem("lastSpun", JSON.stringify(dateNow.toDateString()));
+    console.log(number);
+    circle.style.transform = "rotate(" + number + "deg)";
+    // number += Math.ceil(Math.random() * 1000);
+    // show alert after its done spinning. duration should be == transition
+    let index = parseInt((number % 360) / deg);
+    if (index < 0) index = 0;
+    let prize = rewards[index];
+    setTimeout(() => {
+      quizPopup.classList.add("hide");
+      alert(
+        "You won " + prize + "! Answer a question correctly to get the prize!"
+      );
+      showQuestion(prize);
+    }, 5000);
+  } else {
+    alert("You have spun the wheel once today.");
+  }
 });
 
 function showQuestion(prize) {
