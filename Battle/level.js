@@ -188,7 +188,7 @@ function startGame() {
     attack(player) {
       // attack if player on path or home
       this.isAttacking = true;
-      player.health -= 10 / (player.obj["stats"]["HP"] / 100);
+      player.health -= 100 / (player.obj["stats"]["HP"] / 100);
 
       let img = squares[enemiesPath[this.pos]].children[0].children[0];
 
@@ -211,9 +211,13 @@ function startGame() {
   const squares = document.querySelectorAll(".square");
   const lifeLeft = document.querySelector(".life-left");
   const enemiesLeft = document.querySelector(".enemies-left");
+  const characters = document.getElementById("character-wrapper");
   let players = [];
   let enemy = new Enemy(100, 0);
   let lives = 3;
+
+  // Add placed plants on the side
+  characters.innerHTML = "";
 
   // Add player's plants
   for (let key in charPos) {
@@ -235,6 +239,18 @@ function startGame() {
       userData["plants"][parseInt(img.id)]
     );
     players.push(plant);
+
+    let imgCopy = document.createElement("img");
+    imgCopy.src = img.src;
+    let imgWrapper = document.createElement("div");
+    let cWrapper = document.createElement("div");
+    cWrapper.classList.add("char-wrapper");
+    imgWrapper.classList.add("char-square");
+
+    imgWrapper.appendChild(imgCopy);
+    cWrapper.appendChild(imgWrapper);
+
+    characters.appendChild(cWrapper);
   }
 
   // Add enemy's health bar
@@ -289,12 +305,18 @@ function startGame() {
       ].childNodes[0].childNodes[1].childNodes[0].style.height =
         enemy.health.toString() + "%";
       if (players[i].health <= 0) {
-        // dead
+        // greyscale the dead plants on the sidebar
+        for (let i = 0; i < characters.childNodes.length; ++i) {
+          if (
+            characters.childNodes[i].firstChild.firstChild.src ==
+            squares[players[i].pos].firstChild.firstChild.src
+          ) {
+            characters.childNodes[i].firstChild.style.filter = "grayscale()";
+          }
+        }
         squares[players[i].pos].removeChild(squares[players[i].pos].firstChild);
-        console.log("dead");
         enemy.isAttacking = false;
         players.splice(i, 1);
-        // TODO: UPDATE UI OF DEAD CHARACTERS
       }
     }
   }
