@@ -7,7 +7,7 @@
   background: url(../Assets/Gallery/Background.png);
   background-size: contain;
   background-repeat: no-repeat;
-  background-size: 85vw 70vh;
+  background-size: 85vw 80vh;
   pointer-events: all;
 }
 .mission-row {
