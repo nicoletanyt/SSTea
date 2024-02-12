@@ -208,3 +208,26 @@ body {
   display: flex;
   justify-content: center;
 }
+
+#tutorial-pic {
+  height: 100%;
+}
+#tutorialPopup {
+  background-image: none;
+  display: flex;
+}
+.control-btns {
+  display: flex;
+  justify-content: space-between;
+  width: 90%;
+  position: absolute;
+  top: 90%;
+}
+.fa-solid {
+  font-size: 2em;
+}
+.left-btn,
+.right-btn {
+  margin-right: 10%;
+  margin-left: 10%;
+}

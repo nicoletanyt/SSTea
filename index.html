@@ -17,7 +17,7 @@
 </head>
 
 <body>
-    <div id="topbar">
+    <div id="topbar" class="">
         <a href="./Diary/">
             <div id="user-div">
                 <img id="user-pic" src="./Assets/Homepage/pfp.png" />
@@ -34,13 +34,24 @@
             <h3 class="leaf">120</h3>
         </div>
     </div>
-    <div id="main">
+    <div id="main" class="">
         <img id="pic" src="./Assets/Homepage/bokchoy.png" />
         <div id="spin-btn">
             <img src="./Assets/Homepage/Quiz.png" />
         </div>
     </div>
-    <div id="quizPopup" class="hide popup">
+    <div id="tutorialPopup" class="popup hide">
+        <img id="tutorial-pic" src="./Assets/Homepage/Tutorial/TUTORIAL-7.png" />
+        <div class="control-btns">
+            <div class="left-btn">
+                <i class="fa-solid fa-arrow-left"></i>
+            </div>
+            <div class="right-btn">
+                <i class="fa-solid fa-arrow-right"></i>
+            </div>
+        </div>
+    </div>
+    <div id="quizPopup" class="popup hide">
         <div class="heading">
             <h2>Quiz</h2>
             <img src="./Assets/Homepage/question-mark.png" />
@@ -75,7 +86,7 @@
             </div>
         </div>
     </div>
-    <div id="popup" class="hide popup">
+    <div id="popup" class="popup hide">
         <div class="heading">
             <div class="title">
                 <h2>Quiz</h2>
@@ -91,7 +102,7 @@
         <p class="option"> c) To help them grow sideways and explore more space </p>
         <p class="option"> d) To protect them from too much sunlight </p>
     </div>
-    <nav id="nav-wrapper">
+    <nav id="nav-wrapper" class="">
         <a class="nav-btn" href="./Plants/">
             <img src="./Assets/Homepage/Gallery.png" class="nav-icon" />
         </a>
