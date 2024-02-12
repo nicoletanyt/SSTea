@@ -110,6 +110,7 @@ body {
   justify-self: center;
   align-self: center;
   padding: 2%;
+  position: relative;
 }
 #character-wrapper {
   display: grid;
@@ -129,17 +130,29 @@ body {
 }
 .char-wrapper {
   width: 100%;
-  position: relative;
   height: fit-content;
 }
 .char-square img {
   width: 70%;
 }
+#stat-display {
+  position: absolute;
+  background-color: #ece1bb;
+  border: 2px solid #895b3a;
+  border-radius: 13px;
+  width: 55%;
+  left: 30%;
+  height: 11.15%;
+  z-index: 2;
+  padding: 3%;
+  white-space: pre;
+  top: 3%;
+}
 .right-wrapper {
   display: flex;
   flex-direction: column;
   width: 100%;
-  height: 95%;
+  height: 96%;
   margin: 4%;
 }
 #game {
@@ -163,6 +176,8 @@ body {
   background: #edf3a1;
   width: 30%;
   align-self: flex-end;
+  margin: 0;
+  margin-top: 2%;
   text-align: center;
   padding: 3%;
 }

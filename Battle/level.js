@@ -1,5 +1,7 @@
 const game = document.getElementById("game");
 const charSquares = document.querySelectorAll(".char-square");
+const statDisplay = document.getElementById("stat-display");
+const rightWrapper = document.querySelector(".right-wrapper");
 const rows = 9;
 const cols = 4;
 let charPos = {}; // format is ID : GRID POS
@@ -133,18 +135,42 @@ for (let i = 0; i < charGrids.length; i++) {
       dragover(ev);
     });
     image.addEventListener("click", () => {
-      // get stat details
-      console.log("!");
-      let details = charGrids[i].parentNode;
-      console.log(details);
-      for (
-        let j = 0;
-        j < Object.keys(userData["plants"][i].stats).length;
-        ++j
-      ) {
-        details.textContent += Object.keys(userData["plants"][i].stats)[j];
+      // unblur all other plants
+      for (let j = 0; j < charGrids.length; ++j) {
+        charGrids[j].style.filter = "";
       }
+      // get stat details
+      let statsNames = Object.keys(userData["plants"][i].stats);
+      statDisplay.classList.remove("hidden");
+      statDisplay.childNodes[0].textContent = userData["plants"][i]["name"];
+      statDisplay.style.top = (16 * i + 3).toString() + "%";
+      // -1 for length so don't show level
+      let statText = "";
+      for (let j = 0; j < statsNames.length - 1; ++j) {
+        statText +=
+          statsNames[j] +
+          ": " +
+          userData["plants"][i]["stats"][statsNames[j]] +
+          "\t";
+      }
+      rightWrapper.style.filter = "blur(3px)";
+      for (let j = 0; j < charGrids.length; ++j) {
+        if (j != i) charGrids[j].style.filter = "blur(3px)";
+      }
+      statDisplay.childNodes[1].textContent = statText;
+      rightWrapper.addEventListener("click", removeStat);
     });
+    function removeStat() {
+      if (!statDisplay.classList.contains("hidden")) {
+        statDisplay.classList.add("hidden");
+        // unblur all other plants
+        for (let j = 0; j < charGrids.length; ++j) {
+          charGrids[j].style.filter = "";
+        }
+        rightWrapper.style.filter = "";
+      }
+      rightWrapper.removeEventListener("click", removeStat);
+    }
   }
 }
 
@@ -188,7 +214,7 @@ function startGame() {
     attack(player) {
       // attack if player on path or home
       this.isAttacking = true;
-      player.health -= 100 / (player.obj["stats"]["HP"] / 100);
+      player.health -= 20 / (player.obj["stats"]["HP"] / 100);
 
       let img = squares[enemiesPath[this.pos]].children[0].children[0];
 
