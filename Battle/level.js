@@ -375,6 +375,12 @@ function startGame() {
   healthBar.appendChild(val);
   charWrapper.appendChild(healthBar);
 
+  // remove all red squares
+  const withRange = document.querySelectorAll(".show-range");
+  for (let i = 0; i < withRange.length; ++i) {
+    withRange[i].classList.remove("show-range");
+  }
+
   let enemyMovement = setInterval(game, 2000); // repeat this function every x ms
 
   function game() {
