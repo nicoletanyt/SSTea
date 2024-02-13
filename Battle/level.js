@@ -247,34 +247,45 @@ function startGame() {
       }
     }
     spin() {
-      let tx = this.pos % cols;
-      let ty = Math.floor(this.pos / cols);
-      let ex = enemiesPath[enemy.pos] % cols;
-      let ey = Math.floor(enemiesPath[enemy.pos] / cols);
-      let angle = 0;
+      if (
+        this.health > 0 &&
+        Math.abs((enemiesPath[enemy.pos] % 4) - (this.pos % 4)) <=
+          this.obj["stats"]["Range"] &&
+        Math.abs(
+          Math.floor(enemiesPath[enemy.pos] / 4) - Math.floor(this.pos / 4)
+        ) <= this.obj["stats"]["Range"]
+      ) {
+        let tx = this.pos % cols;
+        let ty = Math.floor(this.pos / cols);
+        let ex = enemiesPath[enemy.pos] % cols;
+        let ey = Math.floor(enemiesPath[enemy.pos] / cols);
+        let angle = 0;
 
-      if (ey == ty) {
-        if (tx > ex) angle = -Math.PI / 2;
-        else angle = Math.PI / 2;
-      } else if (ex == tx) {
-        if (ey > ty) angle = Math.PI;
-        else angle = 0;
-      } else if (this.pos > enemiesPath[enemy.pos]) {
-        let o = ty - ey;
-        let a = tx - ex;
-        if (ty > ey) {
-          angle = -Math.atan(o / a);
+        if (ey == ty) {
+          if (tx > ex) angle = -Math.PI / 2;
+          else angle = Math.PI / 2;
+        } else if (ex == tx) {
+          if (ey > ty) angle = Math.PI;
+          else angle = 0;
+        } else if (this.pos > enemiesPath[enemy.pos]) {
+          let o = ty - ey;
+          let a = tx - ex;
+          if (ty > ey) {
+            angle = -Math.atan(o / a);
+          } else {
+            angle = Math.atan(o / a);
+          }
         } else {
-          angle = Math.atan(o / a);
+          let o = tx - ex;
+          let a = ty - ey;
+          if (ty > ey) angle = Math.atan(o / a) + Math.PI;
+          else angle = -(Math.atan(o / a) + Math.PI);
         }
-      } else {
-        let o = tx - ex;
-        let a = ty - ey;
-        if (ty > ey) angle = Math.atan(o / a) + Math.PI;
-        else angle = -(Math.atan(o / a) + Math.PI);
-      }
 
-      this.img.style.rotate = angle.toString() + "rad";
+        this.img.style.rotate = angle.toString() + "rad";
+      } else {
+        this.img.style.rotate = "0rad";
+      }
     }
   }
 
