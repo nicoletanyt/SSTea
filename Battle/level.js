@@ -4,7 +4,8 @@ const statDisplay = document.getElementById("stat-display");
 const rightWrapper = document.querySelector(".right-wrapper");
 const rows = 9;
 const cols = 4;
-let charPos = {}; // format is ID : GRID POS
+let charPos = {}; // format is GRID POS: IMAGE ID
+let ranges = {}; // format is IMAGE ID: [range]
 const locked = [7, 12, 28, 32];
 const enemiesPath = [1, 5, 9, 13, 17, 18, 22, 26, 30, 34];
 const enemyFrames = [
@@ -14,7 +15,6 @@ const enemyFrames = [
   "../Assets/Battle/thunder5.png",
 ];
 let enemyCurr = 0;
-// let totalChar = 0;
 let userData = JSON.parse(localStorage.getItem("userInfo"));
 
 function loadPlants() {
@@ -28,6 +28,35 @@ function loadPlants() {
       // totalChar += 1;
     }
   }
+}
+
+function showRange(pos) {
+  let r = Math.floor(pos / cols);
+  let c = pos % cols;
+  let rangeSquares = [];
+  let directions = [
+    [-1, -1],
+    [-1, 0],
+    [-1, +1],
+    [0, -1],
+    [0, +1],
+    [+1, -1],
+    [+1, 0],
+    [+1, +1],
+  ];
+
+  for (let i = 0; i < directions.length; ++i) {
+    if (
+      r + directions[i][0] >= 0 &&
+      r + directions[i][0] < rows &&
+      c + directions[i][1] >= 0 &&
+      c + directions[i][1] < cols
+    ) {
+      rangeSquares.push((r + directions[i][0]) * cols + (c + directions[i][1]));
+    }
+  }
+  console.log(rangeSquares);
+  return rangeSquares;
 }
 
 function createGrid() {
@@ -45,6 +74,14 @@ function createGrid() {
           var data = ev.dataTransfer.getData("text");
           ev.target.appendChild(document.getElementById(data));
           charPos[data] = i * rows + j;
+          // update ranges for all
+          ranges[data] = showRange(i * rows + j);
+
+          for (let k = 0; k < Object.values(ranges).length; ++k) {
+            for (let j = 0; j < Object.values(ranges)[k].length; ++j) {
+              grids[Object.values(ranges)[k][j]].classList.add("show-range");
+            }
+          }
         } else {
           alert("You cannot place it here.");
         }
@@ -125,6 +162,13 @@ for (let i = 0; i < charGrids.length; i++) {
     image.addEventListener("dragstart", (ev) => {
       dragStart(ev);
       charPos[image.id] = -1;
+      console.log(ranges[image.id]);
+      if (ranges[image.id] != undefined) {
+        // remove previous range
+        for (let j = 0; j < ranges[image.id].length; ++j) {
+          grids[ranges[image.id][j]].classList.remove("show-range");
+        }
+      }
     });
 
     charGrids[i].addEventListener("drop", (ev) => {

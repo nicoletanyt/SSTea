@@ -20,7 +20,7 @@ const images = [
   "./Assets/Homepage/Tutorial/TUTORIAL-6.png",
   "./Assets/Homepage/Tutorial/TUTORIAL-7.png",
 ];
-const currVersion = "1.0";
+const currVersion = "1.1"; // update this when data.js/localhost changes
 if (
   localStorage.getItem("userInfo") == undefined ||
   JSON.parse(localStorage.getItem("SSTeaVersion")) != currVersion

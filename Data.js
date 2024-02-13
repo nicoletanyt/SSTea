@@ -27,7 +27,7 @@ export let data = {
       stats: {
         HP: 200,
         ATK: 20,
-        Range: 10,
+        Range: 1,
         level: 1,
       },
     },
@@ -39,7 +39,7 @@ export let data = {
       stats: {
         HP: 200,
         ATK: 20,
-        Range: 10,
+        Range: 1,
         level: 1,
       },
     },
@@ -51,7 +51,7 @@ export let data = {
       stats: {
         HP: 200,
         ATK: 20,
-        Range: 10,
+        Range: 1,
         level: 1,
       },
     },
