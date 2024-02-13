@@ -9,9 +9,23 @@ const sections = 4;
 const deg = parseInt(360 / sections);
 const rewards = ["10 Glucose", "10 Leaf Points", "10 Oxygen", "10 Sunpower"];
 let number = Math.ceil(Math.random() * 1000);
+const parts = document.querySelectorAll(".quadrant");
+const closeBtn = document.querySelector(".close-btn");
+
+closeBtn.addEventListener("click", () => {
+  quizPopup.classList.add("hide");
+  dot.classList.add("hide");
+  for (let i = 0; i < parts.length; ++i) {
+    parts[i].classList.add("hide");
+  }
+});
 
 spinBtn.addEventListener("click", () => {
   quizPopup.classList.remove("hide");
+  dot.classList.remove("hide");
+  for (let i = 0; i < parts.length; ++i) {
+    parts[i].classList.remove("hide");
+  }
 });
 
 circle.addEventListener("click", () => {
@@ -30,6 +44,10 @@ circle.addEventListener("click", () => {
     let prize = rewards[index];
     setTimeout(() => {
       quizPopup.classList.add("hide");
+      dot.classList.add("hide");
+      for (let i = 0; i < parts.length; ++i) {
+        parts[i].classList.add("hide");
+      }
       alert(
         "You won " + prize + "! Answer a question correctly to get the prize!"
       );
@@ -48,7 +66,7 @@ function showQuestion(prize) {
   let selected = false;
 
   // Open Quiz Popup
-  quizPopup.classList.add("hide");
+  // quizPopup.classList.add("hide");
   popup.classList.remove("hide");
   popup.classList.add("show");
 
