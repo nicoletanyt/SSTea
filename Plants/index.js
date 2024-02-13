@@ -82,7 +82,11 @@ function displayGallery() {
           displayDraw(i);
         } else {
           window.localStorage.setItem("plantIndex", i);
-          window.location.pathname = "/Plants/plantDetail.html"; // if github doesn't work, add /SSTea
+          if (window.location.hostname == "nicoletanyt.github.io") {
+            window.location.pathname = "/SSTea/Plants/plantDetail.html";
+          } else {
+            window.location.pathname = "/Plants/plantDetail.html";
+          }
         }
       });
     }

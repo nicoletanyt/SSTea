@@ -300,8 +300,11 @@ function startGame() {
         enemiesLeft.textContent = "0/1";
         alert("Level Cleared!");
       }
-      // window.location.pathname = "/SSTea/";
-      window.location.pathname = "../";
+      if (window.location.hostname == "nicoletanyt.github.io") {
+        window.location.pathname = "/SSTea/";
+      } else {
+        window.location.pathname = "../";
+      }
     }
     if (enemy.pos != enemiesPath.length - 2 && !enemy.isAttacking) {
       enemy.move();

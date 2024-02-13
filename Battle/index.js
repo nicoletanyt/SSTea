@@ -21,5 +21,9 @@ for (let i = 0; i < levels.length; i++) {
   });
 }
 closeBtn.addEventListener("click", () => {
-  window.location.pathname = "/Battle/level.html"; // add /SSTea if doesnt work
+  if (window.location.hostname == "nicoletanyt.github.io") {
+    window.location.pathname = "/SSTea/Battle/level.html";
+  } else {
+    window.location.pathname = "/Battle/level.html";
+  }
 });
