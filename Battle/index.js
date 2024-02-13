@@ -14,10 +14,14 @@ oxygen.textContent = userData["currency"]["oxygen"];
 
 for (let i = 0; i < levels.length; i++) {
   levels[i].addEventListener("click", () => {
-    localStorage.setItem("level", levels[i].textContent);
-    popup.classList.remove("hidden");
-    popup.classList.add("show");
-    main.classList.add("hidden");
+    if (levels[i].classList.contains("#1")) {
+      localStorage.setItem("level", levels[i].textContent);
+      popup.classList.remove("hidden");
+      popup.classList.add("show");
+      main.classList.add("hidden");
+    } else {
+      alert("Level locked");
+    }
   });
 }
 closeBtn.addEventListener("click", () => {
