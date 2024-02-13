@@ -226,10 +226,11 @@ startBtn.addEventListener("click", () => {
 
 function startGame() {
   class Tower {
-    constructor(health, pos, obj) {
+    constructor(health, pos, obj, img) {
       this.health = health;
       this.pos = pos;
       this.obj = obj;
+      this.img = img;
     }
 
     attack() {
@@ -244,6 +245,36 @@ function startGame() {
         enemy.health -= this.obj["stats"]["ATK"];
         console.log(this.obj.name);
       }
+    }
+    spin() {
+      let tx = this.pos % cols;
+      let ty = Math.floor(this.pos / cols);
+      let ex = enemiesPath[enemy.pos] % cols;
+      let ey = Math.floor(enemiesPath[enemy.pos] / cols);
+      let angle = 0;
+
+      if (ey == ty) {
+        if (tx > ex) angle = -Math.PI / 2;
+        else angle = Math.PI / 2;
+      } else if (ex == tx) {
+        if (ey > ty) angle = Math.PI;
+        else angle = 0;
+      } else if (this.pos > enemiesPath[enemy.pos]) {
+        let o = ty - ey;
+        let a = tx - ex;
+        if (ty > ey) {
+          angle = -Math.atan(o / a);
+        } else {
+          angle = Math.atan(o / a);
+        }
+      } else {
+        let o = tx - ex;
+        let a = ty - ey;
+        if (ty > ey) angle = Math.atan(o / a) + Math.PI;
+        else angle = -(Math.atan(o / a) + Math.PI);
+      }
+
+      this.img.style.rotate = angle.toString() + "rad";
     }
   }
 
@@ -306,7 +337,8 @@ function startGame() {
     let plant = new Tower(
       100,
       charPos[key],
-      userData["plants"][parseInt(img.id)]
+      userData["plants"][parseInt(img.id)],
+      img
     );
     players.push(plant);
 
@@ -363,6 +395,7 @@ function startGame() {
 
     for (let i = 0; i < players.length; ++i) {
       players[i].attack();
+      players[i].spin();
       if (players[i].pos == enemiesPath[enemy.pos + 1]) {
         // enemy to attack this player
         console.log(players[i].health);
