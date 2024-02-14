@@ -197,7 +197,7 @@ body {
   background-color: #edececcc;
 }
 .show-range {
-  background-color: rgba(219, 89, 89, 0.8);
+  background-color: lightgray;
 }
 .health-bar {
   background-color: #dbe2da;
