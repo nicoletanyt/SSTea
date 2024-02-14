@@ -52,6 +52,10 @@ function displayDraw(i) {
     displayColour.textContent = selectedColour;
   }
   doneBtn.addEventListener("click", () => {
+    // remove border for all the squares
+    for (let i = 0; i < squares.length; ++i) {
+      squares[i].style.border = "none";
+    }
     html2canvas(grid).then((canvas) => {
       document.body.appendChild(canvas);
       let data = canvas.toDataURL("image/png");
