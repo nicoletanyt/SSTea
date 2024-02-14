@@ -1,5 +1,4 @@
 const game = document.getElementById("game");
-const charSquares = document.querySelectorAll(".char-square");
 const statDisplay = document.getElementById("stat-display");
 const rightWrapper = document.querySelector(".right-wrapper");
 const rows = 9;
@@ -16,15 +15,23 @@ const enemyFrames = [
 ];
 let enemyCurr = 0;
 let userData = JSON.parse(localStorage.getItem("userInfo"));
+const characters = document.getElementById("character-wrapper");
 
 function loadPlants() {
   for (let i = 0; i < userData["plants"].length; ++i) {
     if (!userData["plants"][i].locked && userData["plants"][i].draw) {
+      let charWrapper = document.createElement("div");
+      charWrapper.classList.add("char-wrapper");
+
       let img = document.createElement("img");
       img.src = userData["plants"][i]["image"];
       img.draggable = true;
       img.id = i.toString();
-      charSquares[i].appendChild(img);
+      console.log(img);
+
+      charWrapper.appendChild(img);
+      characters.appendChild(charWrapper);
+      console.log(characters);
       // totalChar += 1;
     }
   }
@@ -97,7 +104,7 @@ function createGrid() {
 createGrid();
 loadPlants();
 const grids = document.querySelectorAll(".square");
-const charGrids = document.querySelectorAll(".char-square");
+const charGrids = document.querySelectorAll(".char-wrapper");
 
 function createEnemy(index, grid) {
   let charWrapper = document.createElement("div");
@@ -323,7 +330,6 @@ function startGame() {
   const squares = document.querySelectorAll(".square");
   const lifeLeft = document.querySelector(".life-left");
   const enemiesLeft = document.querySelector(".enemies-left");
-  const characters = document.getElementById("character-wrapper");
   let players = [];
   let enemy = new Enemy(100, 0);
   let lives = 3;
@@ -358,13 +364,12 @@ function startGame() {
 
     let imgCopy = document.createElement("img");
     imgCopy.src = img.src;
-    let imgWrapper = document.createElement("div");
+
     let cWrapper = document.createElement("div");
     cWrapper.classList.add("char-wrapper");
-    imgWrapper.classList.add("char-square");
 
-    imgWrapper.appendChild(imgCopy);
-    cWrapper.appendChild(imgWrapper);
+    cWrapper.appendChild(imgCopy);
+    console.log(cWrapper);
 
     characters.appendChild(cWrapper);
   }

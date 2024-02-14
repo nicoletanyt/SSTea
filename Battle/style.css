@@ -121,18 +121,19 @@ body {
   margin: 4%;
   margin-right: 0;
 }
-.char-square {
+
+.char-wrapper {
   background-image: url("../Assets/Homepage/Border.png");
   background-size: contain;
+  background-size: 100% 100%;
   background-repeat: no-repeat;
+  width: 75%;
+  height: 60%;
   display: flex;
   justify-content: center;
+  padding: 12%;
 }
-.char-wrapper {
-  width: 100%;
-  height: fit-content;
-}
-.char-square img {
+.char-wrapper img {
   width: 70%;
 }
 #stat-display {
