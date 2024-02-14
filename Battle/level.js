@@ -328,6 +328,9 @@ function startGame() {
   let enemy = new Enemy(100, 0);
   let lives = 3;
 
+  // hide confirm button
+  startBtn.classList.add("hidden");
+
   // Add placed plants on the side
   characters.innerHTML = "";
 
